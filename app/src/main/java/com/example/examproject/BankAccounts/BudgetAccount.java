@@ -1,5 +1,15 @@
 package com.example.examproject.BankAccounts;
 
-public class BudgetAccount extends BankAccount{
-    int amount_to_insert_per_month;
+public class BudgetAccount implements Account{
+    public float amount_of_days_to_insert_money;
+
+    @Override
+    public void deposit() {
+
+    }
+
+    @Override
+    public void withdraw() {
+
+    }
 }
