@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fragment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="616dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"/>
+
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/sv_main"
         android:layout_width="395dp"
         android:layout_height="602dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,14 +35,14 @@
             <GridView
                 android:layout_width="346dp"
                 android:layout_height="225dp"
-                app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-                app:layout_constraintEnd_toStartOf="@+id/scrollView2"
-                app:layout_constraintStart_toEndOf="@+id/scrollView2"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+                app:layout_constraintBottom_toTopOf="@+id/sv_main"
+                app:layout_constraintEnd_toStartOf="@+id/sv_main"
+                app:layout_constraintStart_toEndOf="@+id/sv_main"
+                app:layout_constraintTop_toBottomOf="@+id/sv_main"
                 app:layout_constraintVertical_bias="0.729" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/button_accounts"
                 android:layout_width="379dp"
                 android:layout_height="143dp"
                 app:srcCompat="@drawable/kontoogkort"
@@ -39,7 +50,7 @@
                 tools:layout_editor_absoluteY="245dp" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/button_transactions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/doublearrow" />
@@ -48,13 +59,14 @@
     </ScrollView>
 
     <TableRow
+        android:id="@+id/bottom_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="92dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
+        app:layout_constraintTop_toBottomOf="@+id/sv_main">
 
         <Button
             android:id="@+id/button_home"
@@ -83,6 +95,7 @@
             android:layout_height="92dp"
             android:layout_weight="1"
             android:text="Button" />
+
     </TableRow>
 
 </android.support.constraint.ConstraintLayout>
