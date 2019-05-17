@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterFragment">
+
+    <TextView
+        android:id="@+id/firstnamelabel"
+        android:layout_width="79dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="128dp"
+        android:text="first name"
+        app:layout_constraintEnd_toStartOf="@+id/lastnamelabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/firstnameinput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="first name"
+        app:layout_constraintEnd_toStartOf="@+id/lastnameinput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstnamelabel" />
+
+    <TextView
+        android:id="@+id/lastnamelabel"
+        android:layout_width="76dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="128dp"
+        android:text="last name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/firstnamelabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/lastnameinput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="last name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/firstnameinput"
+        app:layout_constraintTop_toBottomOf="@+id/lastnamelabel" />
+
+    <TextView
+        android:id="@+id/passwordlabel"
+        android:layout_width="92dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="52dp"
+        android:text="password"
+        app:layout_constraintEnd_toStartOf="@+id/filiallabel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstnameinput" />
+
+    <EditText
+        android:id="@+id/passwordinput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="140dp"
+        android:text="password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordlabel"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <TextView
+        android:id="@+id/filiallabel"
+        android:layout_width="95dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="52dp"
+        android:text="filial"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/passwordlabel"
+        app:layout_constraintTop_toBottomOf="@+id/lastnameinput" />
+
+    <Spinner
+        android:id="@+id/filialspinner"
+        android:layout_width="119dp"
+        android:layout_height="23dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toEndOf="@+id/passwordinput"
+        app:layout_constraintTop_toBottomOf="@+id/filiallabel"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordinput" />
+
+</android.support.constraint.ConstraintLayout>

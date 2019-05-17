@@ -11,11 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.examproject.BankAccounts.Bank;
+import com.example.examproject.Customer.Customer;
+
 public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-
     TransferFragment myfrag = new TransferFragment();
 
     @Override
@@ -23,16 +25,19 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //VIEWS
         Button btn_home = (Button)findViewById(R.id.button_home);
-
         ImageButton btn_transactions = (ImageButton)findViewById(R.id.button_transactions);
-
         View fragment_layout = (View) findViewById(R.id.fragment_layout);
         View sv_main = (View)findViewById(R.id.sv_main);
 
-        //fragment_layout.setVisibility(View.INVISIBLE);
-
         fragmentManager = getSupportFragmentManager();
+
+        //classes
+
+
+
+        //CALLBACKS
 
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override

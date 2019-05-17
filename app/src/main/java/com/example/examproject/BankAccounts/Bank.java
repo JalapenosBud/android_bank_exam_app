@@ -15,4 +15,9 @@ public class Bank {
         customers = new ArrayList<>();
     }
 
+    public void add(Customer customer)
+    {
+        customers.add(customer);
+    }
+
 }
