@@ -7,7 +7,7 @@ import com.example.examproject.BankAccounts.BankFactory;
 public class Customer {
     public int age;
     public boolean assigned_to_bank;
-    public int money;
+    public int money = 500;
 
     public String first_name;
     public String last_name;

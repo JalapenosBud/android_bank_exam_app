@@ -12,4 +12,10 @@ public class BudgetAccount implements Account{
     public void withdraw() {
 
     }
+
+
+    @Override
+    public String toString() {
+        return "Budget";
+    }
 }

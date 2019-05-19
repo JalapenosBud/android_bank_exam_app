@@ -10,4 +10,9 @@ public class BusinessAccount implements Account{
     public void withdraw() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Business";
+    }
 }

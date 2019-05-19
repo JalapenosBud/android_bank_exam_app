@@ -19,4 +19,9 @@ public class PensionAccount implements Account {
     {
 
     }
+
+    @Override
+    public String toString() {
+        return "Pension";
+    }
 }

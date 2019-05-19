@@ -10,4 +10,9 @@ public class DefaultAccount implements Account {
     public void withdraw() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Default";
+    }
 }

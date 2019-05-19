@@ -21,8 +21,6 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
     FragmentTransaction fragmentTransaction;
     RegisterFragment registerFragment = new RegisterFragment();
 
-    Bank bank = new Bank();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +41,9 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+/*
                 for (Customer c :
-                        bank.customers) {
+                        Bank.customers) {
                     if(username_input.getText().toString().equals(c.first_name))
                     {
                         startActivity(sign_in_intent);
@@ -58,6 +56,9 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
                 }
 
                 //startactivity starts a new activity
+*/
+
+            startActivity(sign_in_intent);
 
             }
         });
@@ -107,8 +108,8 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
 
     @Override
     public void CustomerRegister(Customer customer) {
-        bank.add(customer);
+        Bank.add(customer);
         Log.d("customer", "Customer created with: " + customer.first_name+ ", " +
-                customer.last_name + ", " + customer.password + ", total customers in bank: " + bank.customers.size());
+                customer.last_name + ", " + customer.password + ", total customers in bank: " + Bank.customers.size());
     }
 }

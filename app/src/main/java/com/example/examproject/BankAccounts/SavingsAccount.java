@@ -15,4 +15,9 @@ public class SavingsAccount implements Account{
     public void withdraw() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Savings";
+    }
 }

@@ -9,8 +9,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.examproject.BankAccounts.Account;
+import com.example.examproject.BankAccounts.AccountType;
+import com.example.examproject.BankAccounts.Bank;
+import com.example.examproject.BankAccounts.BankFactory;
+import com.example.examproject.BankAccounts.BudgetAccount;
+import com.example.examproject.BankAccounts.BusinessAccount;
+import com.example.examproject.BankAccounts.DefaultAccount;
+import com.example.examproject.BankAccounts.PensionAccount;
+import com.example.examproject.BankAccounts.SavingsAccount;
 import com.example.examproject.Customer.Customer;
 
 
@@ -33,8 +45,15 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-
     private OnEntrySelectedListener entrySelectedListener;
+
+    Account[] accounts = {
+            Bank.bankFactory.getAccount(AccountType.DEFAULT),
+            Bank.bankFactory.getAccount(AccountType.BUDGET),
+            Bank.bankFactory.getAccount(AccountType.SAVINGS),
+            Bank.bankFactory.getAccount(AccountType.BUSINESS),
+            Bank.bankFactory.getAccount(AccountType.PENSION)
+    };
 
     @Override
     public void onCustomerSelected(Customer customer) {
@@ -82,10 +101,34 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Spinner spinner1 = (Spinner)getView().findViewById(R.id.spinner_first_account);
-        Spinner spinner2 = (Spinner)getView().findViewById(R.id.spinner_second_account);
+        //TODO: Associate bank accounts with each new Customer that gets registered to the bank
 
-        //spinner1.
+        String[] objs = {
+                accounts[0].toString(),
+                accounts[1].toString(),
+                accounts[2].toString(),
+                accounts[3].toString(),
+                accounts[4].toString()};
+        //-----------------
+        //Spinner logic
+        Spinner spinner_account_1 = (Spinner)getView().findViewById(R.id.spinner_first_account);
+        Spinner spinner_account_2 = (Spinner)getView().findViewById(R.id.spinner_second_account);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,objs);
+        spinner_account_1.setAdapter(spinnerAdapter);
+        spinner_account_2.setAdapter(spinnerAdapter);
+        //------------------
+
+        //--------------
+        //button logic
+        Button transfer_button = (Button)getView().findViewById(R.id.button_transfer);
+        transfer_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),
+                        "Transfered " + Bank.customers.get(0).money + " from " + spinner_account_1.getSelectedItem() + " to " + spinner_account_2.getSelectedItem()
+                        , Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

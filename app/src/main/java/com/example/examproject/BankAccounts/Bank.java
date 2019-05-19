@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-    BankFactory bankFactory = new BankFactory();
+    public static BankFactory bankFactory = new BankFactory();
 
-    public List<Customer> customers;
+    public static List<Customer> customers = new ArrayList<>();
 
     public Bank()
     {
-        customers = new ArrayList<>();
+
     }
 
-    public void add(Customer customer)
+    public static void add(Customer customer)
     {
         customers.add(customer);
     }
