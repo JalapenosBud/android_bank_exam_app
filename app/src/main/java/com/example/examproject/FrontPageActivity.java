@@ -21,10 +21,17 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
     FragmentTransaction fragmentTransaction;
     RegisterFragment registerFragment = new RegisterFragment();
 
+    Bank bank = new Bank();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.front_page);
+
+        Bank.add(new Customer("peter", "hansen","123","Copenhagen"));
+        Bank.add(new Customer("lars", "dudeson","123","Copenhagen"));
+        Bank.add(new Customer("tjo", "haiti","123","Odense"));
+        Bank.add(new Customer("soren", "hansen","123","Odense"));
 
         View main_view = (View)findViewById(R.id.front_page_layout);
         Button sign_in = (Button) findViewById(R.id.button_sign_in);

@@ -20,4 +20,9 @@ public class Bank {
         customers.add(customer);
     }
 
+    public static List<Customer> getCustomers()
+    {
+        return customers;
+    }
+
 }

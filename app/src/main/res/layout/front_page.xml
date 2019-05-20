@@ -20,13 +20,15 @@
             android:id="@+id/password_input"
             android:layout_width="177dp"
             android:layout_height="35dp"
-            android:text="input"
+            android:text="@string/_123"
+            android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_password"
-            app:layout_constraintVertical_bias="0.125" />
+            app:layout_constraintVertical_bias="0.125"
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/tv_username"
@@ -34,7 +36,7 @@
             android:layout_height="34dp"
             android:layout_marginTop="36dp"
             android:layout_marginBottom="8dp"
-            android:text="Username"
+            android:text="@string/username"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -48,7 +50,7 @@
             android:layout_height="33dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Password"
+            android:text="@string/password"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +62,7 @@
             android:layout_width="402dp"
             android:layout_height="52dp"
             android:layout_marginTop="120dp"
-            android:text="KEA BANK"
+            android:text="@string/kea_bank"
             android:textAlignment="center"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +75,7 @@
             android:layout_width="230dp"
             android:layout_height="53dp"
             android:layout_marginBottom="68dp"
-            android:text="REGISTER"
+            android:text="@string/register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -87,7 +89,7 @@
             android:layout_height="70dp"
             android:layout_marginTop="168dp"
             android:layout_marginBottom="8dp"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             app:layout_constraintBottom_toTopOf="@+id/button_register_front_page"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,12 +100,14 @@
             android:id="@+id/username_input"
             android:layout_width="179dp"
             android:layout_height="33dp"
-            android:text="input"
+            android:text="@string/lars"
+            android:inputType="text"
             app:layout_constraintBottom_toTopOf="@+id/tv_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_username"
+            android:importantForAutofill="no" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout

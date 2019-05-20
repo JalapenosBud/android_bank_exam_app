@@ -25,6 +25,8 @@ import com.example.examproject.BankAccounts.PensionAccount;
 import com.example.examproject.BankAccounts.SavingsAccount;
 import com.example.examproject.Customer.Customer;
 
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,14 +110,24 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 accounts[1].toString(),
                 accounts[2].toString(),
                 accounts[3].toString(),
-                accounts[4].toString()};
+                accounts[4].toString()
+        };
+
+        //-----------------
+       List<Customer> customers = Bank.getCustomers();
         //-----------------
         //Spinner logic
         Spinner spinner_account_1 = (Spinner)getView().findViewById(R.id.spinner_first_account);
         Spinner spinner_account_2 = (Spinner)getView().findViewById(R.id.spinner_second_account);
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,objs);
-        spinner_account_1.setAdapter(spinnerAdapter);
-        spinner_account_2.setAdapter(spinnerAdapter);
+        Spinner spinner_account_3 = (Spinner)getView().findViewById(R.id.spinner_choose_account);
+
+        ArrayAdapter<String> stringAdapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,objs);
+        spinner_account_1.setAdapter(stringAdapter);
+        spinner_account_2.setAdapter(stringAdapter);
+
+        ArrayAdapter<Customer> customerAdapter = new ArrayAdapter<Customer>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,customers);
+        spinner_account_3.setAdapter(customerAdapter);
+
         //------------------
 
         //--------------

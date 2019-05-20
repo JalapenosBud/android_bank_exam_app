@@ -52,4 +52,8 @@ public class Customer {
         pensionAccount = factory.getAccount(AccountType.PENSION);
     }
 
+    @Override
+    public String toString() {
+        return "" + last_name + ", " + first_name;
+    }
 }
