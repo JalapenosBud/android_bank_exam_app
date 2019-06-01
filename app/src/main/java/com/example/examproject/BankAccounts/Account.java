@@ -3,8 +3,18 @@ package com.example.examproject.BankAccounts;
 public abstract class Account {
     public float money;
 
-    public abstract void deposit();
-    public abstract void withdraw();
+    public void deposit(float money) {
+        this.money += money;
+    }
+    public boolean withdraw(float money){
 
-    public abstract void updateAccount(float money);
+        if(money > this.money)
+            return false;
+        else
+        {
+            this.money -= money;
+            return true;
+        }
+
+    }
 }

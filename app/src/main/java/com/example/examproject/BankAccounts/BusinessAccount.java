@@ -7,21 +7,6 @@ public class BusinessAccount extends Account{
     }
 
     @Override
-    public void deposit() {
-
-    }
-
-    @Override
-    public void withdraw() {
-
-    }
-
-    @Override
-    public void updateAccount(float money) {
-        this.money += money;
-    }
-
-    @Override
     public String toString() {
         return "BUSINESS";
     }

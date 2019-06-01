@@ -54,7 +54,8 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             Bank.bankFactory.getAccount(AccountType.PENSION)
     };
 
-    Account to_account;
+    Account money_from_account;
+    Account money_to_account;
     Customer current_customer;
 
 
@@ -143,9 +144,9 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 //vis de penge i text view som der er på den tilsvarende account man trykker på
 
                 current_customer = customerAdapter.getItem(position);
-
-                //System.out.println(to_account.money);
-                cur_amount_from.setText("" + current_customer.accounts[spinner_from_account.getSelectedItemPosition()].money);
+                money_from_account = current_customer.accounts[spinner_from_account.getSelectedItemPosition()];
+                //System.out.println(money_to_account.money);
+                cur_amount_from.setText("" + money_from_account.money);
 
             }
 
@@ -159,8 +160,8 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 current_customer = customerAdapter.getItem(position);
-                to_account = current_customer.accounts[spinner_to_account.getSelectedItemPosition()];
-                cur_amount_to.setText("" + current_customer.accounts[spinner_to_account.getSelectedItemPosition()].money);
+                money_to_account = current_customer.accounts[spinner_to_account.getSelectedItemPosition()];
+                cur_amount_to.setText("" + money_to_account.money);
             }
 
             @Override
@@ -178,10 +179,21 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         transfer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //DEPOSIT
 
-                to_account.updateAccount(Float.parseFloat(input_field.getText().toString()));
-                cur_amount_from.setText("" + current_customer.accounts[spinner_from_account.getSelectedItemPosition()].money);
-                cur_amount_to.setText("" + current_customer.accounts[spinner_to_account.getSelectedItemPosition()].money);
+                if(!money_from_account.withdraw(Float.parseFloat(input_field.getText().toString())))
+                {
+                    Toast.makeText(getContext(), "Not enough money left on the account",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    money_from_account.withdraw(Float.parseFloat(input_field.getText().toString()));
+                }
+
+                money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
+
+                cur_amount_from.setText("" + money_from_account.money);
+                cur_amount_to.setText("" + money_to_account.money);
                 Toast.makeText(getContext(),
                         spinner_person.getSelectedItem() +  " transfered " + input_field.getText().toString() + " from " + spinner_from_account.getSelectedItem() + " to " + spinner_to_account.getSelectedItem()
                         , Toast.LENGTH_SHORT).show();
