@@ -1,6 +1,11 @@
 package com.example.examproject.BankAccounts;
 
-public class BusinessAccount implements Account{
+public class BusinessAccount extends Account{
+
+    public BusinessAccount() {
+        money = 100;
+    }
+
     @Override
     public void deposit() {
 
@@ -12,7 +17,12 @@ public class BusinessAccount implements Account{
     }
 
     @Override
+    public void updateAccount(float money) {
+        this.money += money;
+    }
+
+    @Override
     public String toString() {
-        return "Business";
+        return "BUSINESS";
     }
 }

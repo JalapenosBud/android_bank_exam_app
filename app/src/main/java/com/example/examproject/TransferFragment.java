@@ -9,20 +9,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.examproject.BankAccounts.Account;
 import com.example.examproject.BankAccounts.AccountType;
 import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.BankAccounts.BankFactory;
-import com.example.examproject.BankAccounts.BudgetAccount;
-import com.example.examproject.BankAccounts.BusinessAccount;
-import com.example.examproject.BankAccounts.DefaultAccount;
-import com.example.examproject.BankAccounts.PensionAccount;
-import com.example.examproject.BankAccounts.SavingsAccount;
 import com.example.examproject.Customer.Customer;
 
 import java.util.List;
@@ -56,6 +53,10 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             Bank.bankFactory.getAccount(AccountType.BUSINESS),
             Bank.bankFactory.getAccount(AccountType.PENSION)
     };
+
+    Account to_account;
+    Customer current_customer;
+
 
     @Override
     public void onCustomerSelected(Customer customer) {
@@ -113,31 +114,76 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 accounts[4].toString()
         };
 
+        EditText input_field = (EditText)getView().findViewById(R.id.input_amount);
+        TextView cur_amount_from = (TextView)getView().findViewById(R.id.tv_cur_amount_from);
+        TextView cur_amount_to = (TextView)getView().findViewById(R.id.tv_cur_amount_to);
+
         //-----------------
-       List<Customer> customers = Bank.getCustomers();
+        List<Customer> customers = Bank.getCustomers();
         //-----------------
         //Spinner logic
-        Spinner spinner_account_1 = (Spinner)getView().findViewById(R.id.spinner_first_account);
-        Spinner spinner_account_2 = (Spinner)getView().findViewById(R.id.spinner_second_account);
-        Spinner spinner_account_3 = (Spinner)getView().findViewById(R.id.spinner_choose_account);
-
-        ArrayAdapter<String> stringAdapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,objs);
-        spinner_account_1.setAdapter(stringAdapter);
-        spinner_account_2.setAdapter(stringAdapter);
+        Spinner spinner_person = (Spinner)getView().findViewById(R.id.person_spinner);
+        Spinner spinner_from_account = (Spinner)getView().findViewById(R.id.spinner_from_account);
+        Spinner spinner_to_account = (Spinner)getView().findViewById(R.id.spinner_to_account);
 
         ArrayAdapter<Customer> customerAdapter = new ArrayAdapter<Customer>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,customers);
-        spinner_account_3.setAdapter(customerAdapter);
+        spinner_person.setAdapter(customerAdapter);
+
+        ArrayAdapter<String> stringAdapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,objs);
+        spinner_from_account.setAdapter(stringAdapter);
+        spinner_to_account.setAdapter(stringAdapter);
+
+
+
+        spinner_from_account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+
+                //vis de penge i text view som der er på den tilsvarende account man trykker på
+
+                current_customer = customerAdapter.getItem(position);
+
+                //System.out.println(to_account.money);
+                cur_amount_from.setText("" + current_customer.accounts[spinner_from_account.getSelectedItemPosition()].money);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner_to_account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                current_customer = customerAdapter.getItem(position);
+                to_account = current_customer.accounts[spinner_to_account.getSelectedItemPosition()];
+                cur_amount_to.setText("" + current_customer.accounts[spinner_to_account.getSelectedItemPosition()].money);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         //------------------
 
         //--------------
         //button logic
-        Button transfer_button = (Button)getView().findViewById(R.id.button_transfer);
+        Button transfer_button = (Button)getView().findViewById(R.id.button_ok);
         transfer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                to_account.updateAccount(Float.parseFloat(input_field.getText().toString()));
+                cur_amount_from.setText("" + current_customer.accounts[spinner_from_account.getSelectedItemPosition()].money);
+                cur_amount_to.setText("" + current_customer.accounts[spinner_to_account.getSelectedItemPosition()].money);
                 Toast.makeText(getContext(),
-                        "Transfered " + Bank.customers.get(0).money + " from " + spinner_account_1.getSelectedItem() + " to " + spinner_account_2.getSelectedItem()
+                        spinner_person.getSelectedItem() +  " transfered " + input_field.getText().toString() + " from " + spinner_from_account.getSelectedItem() + " to " + spinner_to_account.getSelectedItem()
                         , Toast.LENGTH_SHORT).show();
             }
         });

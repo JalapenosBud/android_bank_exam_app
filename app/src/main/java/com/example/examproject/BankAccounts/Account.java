@@ -1,6 +1,10 @@
 package com.example.examproject.BankAccounts;
 
-public interface Account {
-    void deposit();
-    void withdraw();
+public abstract class Account {
+    public float money;
+
+    public abstract void deposit();
+    public abstract void withdraw();
+
+    public abstract void updateAccount(float money);
 }
