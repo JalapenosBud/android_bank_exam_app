@@ -56,10 +56,11 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
     Account money_from_account;
     Account money_to_account;
-    Customer current_customer;
-    Customer chosen_customer;
 
-    ArrayList<String> chosen_customer_list;
+    Customer current_customer;
+    Customer chosen_customer = new Customer();
+
+    ArrayList<String> chosen_customer_list = new ArrayList<>();
     @Override
     public void onCustomerSelected(Customer customer) {
 
@@ -104,8 +105,6 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         EditText input_field = (EditText)getView().findViewById(R.id.input_amount);
         TextView cur_amount_from = (TextView)getView().findViewById(R.id.tv_cur_amount_from);
         TextView cur_amount_to = (TextView)getView().findViewById(R.id.tv_cur_amount_to);
@@ -115,7 +114,7 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
         //TODO: Associate bank accounts with each new Customer that gets registered to the bank
 
-        String current_customer_string;
+        //TODO: set second spinner to the customer that is chosen as being transferred to
 
         ArrayList<String> logged_in_customer = new ArrayList<>();
         for (Account acc : Bank.logged_in_customer.accounts)
@@ -124,20 +123,14 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         }
 
 
-       /* chosen_custumer = new ArrayList<>();
-        for (Account acc : Bank.logged_in_customer.accounts)
-        {
-            chosen_custumer.add(acc.toString());
-        }*/
-
-        //TODO: set first spinner to the customer that is logged in
-        //TODO: set second spinner to the customer that is chosen as being transferred to
-
         //-----------------
         //Spinner logic
-        Spinner spinner_person = (Spinner)getView().findViewById(R.id.person_spinner);
-        Spinner spinner_from_account = (Spinner)getView().findViewById(R.id.spinner_from_account);
-        Spinner spinner_to_account = (Spinner)getView().findViewById(R.id.spinner_to_account);
+        TextView tv_from_person = (TextView)getView().findViewById(R.id.tv_person_from);
+        Spinner spinner_person = (Spinner)getView().findViewById(R.id.spinner_person_transfer_to);
+        Spinner spinner_from_account = (Spinner)getView().findViewById(R.id.spinner_transfer_from_account);
+        Spinner spinner_to_account = (Spinner)getView().findViewById(R.id.spinner_transfer_to_account);
+
+        tv_from_person.setText("" + Bank.logged_in_customer);
 
         ArrayAdapter<Customer> customerAdapter = new ArrayAdapter<Customer>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,customers);
         spinner_person.setAdapter(customerAdapter);
@@ -147,25 +140,16 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         spinner_from_account.setAdapter(logged_in_adapter);
 
 
-
         spinner_person.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //chosen customer adapter
 
                 chosen_customer = (Customer)parent.getSelectedItem();
-
-                for (Account acc : chosen_customer.getActiveAccounts())
-                {
-                    chosen_customer_list.add(acc.toString());
-                }
-
+                chosen_customer_list = chosen_customer.getActiveAccountsAsString();
 
                 ArrayAdapter<String> chosen_customer_adapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,chosen_customer_list);
                 spinner_to_account.setAdapter(chosen_customer_adapter);
-
-
-
             }
 
             @Override
@@ -174,16 +158,17 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             }
         });
 
-
+        //når man vælger en account så skal text view money opdateres til den værdi
         spinner_from_account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
+                //den loggede ind customer
+                current_customer = Bank.logged_in_customer;
 
-                //vis de penge i text view som der er på den tilsvarende account man trykker på
-                current_customer = customerAdapter.getItem(position);
+                //få id af valgte spinner
                 money_from_account = current_customer.accounts.get(spinner_from_account.getSelectedItemPosition());
                 //System.out.println(money_to_account.money);
+
                 cur_amount_from.setText("" + money_from_account.money);
 
             }
@@ -197,8 +182,12 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         spinner_to_account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //få id af valgte customer i spinner
                 current_customer = customerAdapter.getItem(position);
-                money_to_account = current_customer.accounts.get(spinner_to_account.getSelectedItemPosition());
+
+                //den valgte customer i "transfer to customer" spinner
+                money_to_account = chosen_customer.accounts.get(spinner_to_account.getSelectedItemPosition());
+
                 cur_amount_to.setText("" + money_to_account.money);
             }
 
@@ -207,7 +196,6 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
             }
         });
-
 
         //------------------
 
@@ -230,14 +218,16 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 if(!money_from_account.withdraw(Float.parseFloat(input_field.getText().toString())))
                 {
                     Toast.makeText(getContext(), "Not enough money left on the account",Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 else
                 {
                     Toast.makeText(getContext(),
                             spinner_person.getSelectedItem() +  " transfered " + input_field.getText().toString() + " from " + spinner_from_account.getSelectedItem() + " to " + spinner_to_account.getSelectedItem()
                             , Toast.LENGTH_SHORT).show();
-                    money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
                     money_from_account.withdraw(Float.parseFloat(input_field.getText().toString()));
+                    money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
+
                 }
 
                 cur_amount_from.setText("" + money_from_account.money);

@@ -20,7 +20,7 @@ public class Customer {
     public String password;
     public String filial;
 
-    public ArrayList<Account> accounts = new ArrayList<>();
+    public ArrayList<Account> accounts ;
 
     //use for spinner access
     boolean hasBusinessAccount;
@@ -30,11 +30,7 @@ public class Customer {
     private BankFactory factory = new BankFactory();
 
     public Customer() {
-        accounts.add(new DefaultAccount());
-        accounts.add(new BudgetAccount());
-        accounts.add(new SavingsAccount());
-        accounts.add(new BusinessAccount());
-        accounts.add(new PensionAccount());
+
     }
 
     public Customer(String first_name, String last_name, String password, String filial){
@@ -43,14 +39,24 @@ public class Customer {
         this.filial = filial;
         this.password = password;
 
+        accounts = new ArrayList<>();
+        accounts.add(new DefaultAccount());
+        accounts.add(new BudgetAccount());
+        //accounts.add(new SavingsAccount());
+        //accounts.add(new BusinessAccount());
+        //accounts.add(new PensionAccount());
+
         accounts.set(0,factory.getAccount(AccountType.DEFAULT));
-        accounts.set(1,factory.getAccount(AccountType.DEFAULT));
+        accounts.set(1,factory.getAccount(AccountType.BUDGET));
     }
 
-    public ArrayList<Account> getActiveAccounts() {
-        ArrayList<Account> tmplist = new ArrayList<>();
+    public ArrayList<String> getActiveAccountsAsString() {
+        ArrayList<String> tmplist = new ArrayList<>();
 
-        tmplist.addAll(accounts);
+        for(Account s : accounts)
+        {
+            tmplist.add(s.toString());
+        }
         return tmplist;
     }
 

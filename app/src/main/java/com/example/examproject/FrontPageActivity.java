@@ -12,7 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.examproject.BankAccounts.AccountType;
 import com.example.examproject.BankAccounts.Bank;
+import com.example.examproject.BankAccounts.BankFactory;
+import com.example.examproject.BankAccounts.BusinessAccount;
+import com.example.examproject.BankAccounts.PensionAccount;
+import com.example.examproject.BankAccounts.SavingsAccount;
 import com.example.examproject.Customer.Customer;
 
 public class FrontPageActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, OnCustomerRegister {
@@ -21,17 +26,25 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
     FragmentTransaction fragmentTransaction;
     RegisterFragment registerFragment = new RegisterFragment();
 
-    Bank bank = new Bank();
-
-
-
+    Bank bank;
+    BankFactory factory = new BankFactory();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.front_page);
 
-        Bank.add(new Customer("peter", "hansen","123","Copenhagen"));
-        Bank.add(new Customer("lars", "dudeson","123","Copenhagen"));
+        bank = new Bank();
+
+        Customer peter = new Customer("peter", "hansen","123","Copenhagen");
+        peter.accounts.add(new SavingsAccount());
+        peter.accounts.set(2, factory.getAccount(AccountType.SAVINGS));
+
+        Customer lars = new Customer("lars", "dudeson","123","Copenhagen");
+        lars.accounts.add(new BusinessAccount());
+        lars.accounts.set(2, factory.getAccount(AccountType.BUSINESS));
+
+        Bank.add(peter);
+        Bank.add(lars);
         Bank.add(new Customer("tjo", "haiti","123","Odense"));
         Bank.add(new Customer("soren", "hansen","123","Odense"));
 
@@ -61,13 +74,10 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
                     }
                     else
                     {
-
                         Toast.makeText(getApplicationContext(),"Wrong username, try again." + c.first_name + " u: " + username_input.getText(), Toast.LENGTH_SHORT).show();
                     }
                 }
-
                 //startactivity starts a new activity
-
 
             //startActivity(sign_in_intent);
 
