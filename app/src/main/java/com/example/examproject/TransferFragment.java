@@ -181,6 +181,14 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             public void onClick(View v) {
                 //DEPOSIT
 
+                String input = input_field.getText().toString();
+
+                if(input == null || input.trim().equals(""))
+                {
+                    Toast.makeText(getContext(),"enter an amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(!money_from_account.withdraw(Float.parseFloat(input_field.getText().toString())))
                 {
                     Toast.makeText(getContext(), "Not enough money left on the account",Toast.LENGTH_SHORT).show();
@@ -196,8 +204,6 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
                 cur_amount_from.setText("" + money_from_account.money);
                 cur_amount_to.setText("" + money_to_account.money);
-
-
             }
         });
 
