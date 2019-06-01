@@ -15,6 +15,8 @@ public class Bank {
 
     }
 
+    public static Customer logged_in_customer;
+
     public static void add(Customer customer)
     {
         customers.add(customer);

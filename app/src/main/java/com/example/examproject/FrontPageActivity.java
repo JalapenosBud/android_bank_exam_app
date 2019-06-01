@@ -23,6 +23,8 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
 
     Bank bank = new Bank();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,14 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-/*
+
                 for (Customer c :
                         Bank.customers) {
                     if(username_input.getText().toString().equals(c.first_name))
                     {
                         startActivity(sign_in_intent);
+                        Bank.logged_in_customer = c;
+                        System.out.println(c);
                     }
                     else
                     {
@@ -63,9 +67,9 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
                 }
 
                 //startactivity starts a new activity
-*/
 
-            startActivity(sign_in_intent);
+
+            //startActivity(sign_in_intent);
 
             }
         });

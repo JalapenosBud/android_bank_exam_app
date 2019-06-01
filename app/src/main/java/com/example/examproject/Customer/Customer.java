@@ -9,6 +9,8 @@ import com.example.examproject.BankAccounts.DefaultAccount;
 import com.example.examproject.BankAccounts.PensionAccount;
 import com.example.examproject.BankAccounts.SavingsAccount;
 
+import java.util.ArrayList;
+
 public class Customer {
     public int age;
     public boolean assigned_to_bank;
@@ -18,7 +20,7 @@ public class Customer {
     public String password;
     public String filial;
 
-    public Account[] accounts = {new DefaultAccount(), new BudgetAccount(), new SavingsAccount(), new BusinessAccount(),new PensionAccount()};
+    public ArrayList<Account> accounts = new ArrayList<>();
 
     //use for spinner access
     boolean hasBusinessAccount;
@@ -28,6 +30,11 @@ public class Customer {
     private BankFactory factory = new BankFactory();
 
     public Customer() {
+        accounts.add(new DefaultAccount());
+        accounts.add(new BudgetAccount());
+        accounts.add(new SavingsAccount());
+        accounts.add(new BusinessAccount());
+        accounts.add(new PensionAccount());
     }
 
     public Customer(String first_name, String last_name, String password, String filial){
@@ -36,11 +43,18 @@ public class Customer {
         this.filial = filial;
         this.password = password;
 
-        accounts[0] = factory.getAccount(AccountType.DEFAULT);
-        accounts[1] = factory.getAccount(AccountType.BUDGET);
+        accounts.set(0,factory.getAccount(AccountType.DEFAULT));
+        accounts.set(1,factory.getAccount(AccountType.DEFAULT));
     }
 
-    public void unlockSavingsAccount(){
+    public ArrayList<Account> getActiveAccounts() {
+        ArrayList<Account> tmplist = new ArrayList<>();
+
+        tmplist.addAll(accounts);
+        return tmplist;
+    }
+
+    /*public void unlockSavingsAccount(){
         accounts[2] = factory.getAccount(AccountType.SAVINGS);
     }
 
@@ -50,7 +64,7 @@ public class Customer {
 
     public void unlockPensionAccount(){
         accounts[4] = factory.getAccount(AccountType.PENSION);
-    }
+    }*/
 
     @Override
     public String toString() {
