@@ -187,16 +187,17 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 }
                 else
                 {
+                    Toast.makeText(getContext(),
+                            spinner_person.getSelectedItem() +  " transfered " + input_field.getText().toString() + " from " + spinner_from_account.getSelectedItem() + " to " + spinner_to_account.getSelectedItem()
+                            , Toast.LENGTH_SHORT).show();
+                    money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
                     money_from_account.withdraw(Float.parseFloat(input_field.getText().toString()));
                 }
 
-                money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
-
                 cur_amount_from.setText("" + money_from_account.money);
                 cur_amount_to.setText("" + money_to_account.money);
-                Toast.makeText(getContext(),
-                        spinner_person.getSelectedItem() +  " transfered " + input_field.getText().toString() + " from " + spinner_from_account.getSelectedItem() + " to " + spinner_to_account.getSelectedItem()
-                        , Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
