@@ -3,10 +3,16 @@ package com.example.examproject;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 
 /**
@@ -18,6 +24,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class NemIdFragment extends Fragment {
+
+    NemID nemID = new NemID();
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,6 +74,17 @@ public class NemIdFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_nem_id, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ListView lv_nemid = (ListView)getView().findViewById(R.id.lv_nemid);
+
+        ListAdapter strAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, nemID.nem_id_list);
+
+        lv_nemid.setAdapter(strAdapter);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
