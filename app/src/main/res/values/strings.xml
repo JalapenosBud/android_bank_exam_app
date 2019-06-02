@@ -13,4 +13,8 @@
     <string name="ok">OK</string>
     <string name="_0000">0000</string>
     <string name="person_to_transfer_to">PERSON TO TRANSFER TO</string>
+    <string name="value">VALUE</string>
+    <string name="key">KEY:</string>
+    <string name="_811_123_522">811-123-522</string>
+    <string name="nemid">NEMID</string>
 </resources>

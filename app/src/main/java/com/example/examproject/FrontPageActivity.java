@@ -39,9 +39,15 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         peter.accounts.add(new SavingsAccount());
         peter.accounts.set(2, factory.getAccount(AccountType.SAVINGS));
 
+        peter.accounts.add(new PensionAccount());
+        peter.accounts.set(3, factory.getAccount(AccountType.PENSION));
+
         Customer lars = new Customer("lars", "dudeson","123","Copenhagen");
         lars.accounts.add(new BusinessAccount());
         lars.accounts.set(2, factory.getAccount(AccountType.BUSINESS));
+
+        lars.accounts.add(new PensionAccount());
+        lars.accounts.set(3, factory.getAccount(AccountType.PENSION));
 
         Bank.add(peter);
         Bank.add(lars);
@@ -68,9 +74,10 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
                         Bank.customers) {
                     if(username_input.getText().toString().equals(c.first_name))
                     {
-                        startActivity(sign_in_intent);
+
                         Bank.logged_in_customer = c;
                         System.out.println(c);
+                        startActivity(sign_in_intent);
                     }
                     else
                     {

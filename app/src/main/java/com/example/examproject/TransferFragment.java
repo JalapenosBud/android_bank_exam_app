@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.examproject.BankAccounts.Account;
+import com.example.examproject.BankAccounts.AccountType;
 import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.Customer.Customer;
 
@@ -46,13 +50,12 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     private OnFragmentInteractionListener mListener;
     private OnEntrySelectedListener entrySelectedListener;
 
-    /*Account[] accounts = {
-            Bank.bankFactory.getAccount(AccountType.DEFAULT),
-            Bank.bankFactory.getAccount(AccountType.BUDGET),
-            Bank.bankFactory.getAccount(AccountType.SAVINGS),
-            Bank.bankFactory.getAccount(AccountType.BUSINESS),
-            Bank.bankFactory.getAccount(AccountType.PENSION)
-    };*/
+    View nem_id_fragment;
+    View normal_layout;
+
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    NemIdFragment myfrag;
 
     Account money_from_account;
     Account money_to_account;
@@ -112,17 +115,18 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         //-----------------
         List<Customer> customers = Bank.getCustomers();
 
-        //TODO: Associate bank accounts with each new Customer that gets registered to the bank
-
-        //TODO: set second spinner to the customer that is chosen as being transferred to
-
         ArrayList<String> logged_in_customer = new ArrayList<>();
         for (Account acc : Bank.logged_in_customer.accounts)
         {
             logged_in_customer.add(acc.toString());
         }
 
+        myfrag = new NemIdFragment();
 
+
+        nem_id_fragment = (View)getView().findViewById(R.id.nem_id_fragment);
+        normal_layout = (View)getView().findViewById(R.id.normal_layout);
+        fragmentManager = getFragmentManager();
         //-----------------
         //Spinner logic
         TextView tv_from_person = (TextView)getView().findViewById(R.id.tv_person_from);
@@ -168,7 +172,6 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 //få id af valgte spinner
                 money_from_account = current_customer.accounts.get(spinner_from_account.getSelectedItemPosition());
                 //System.out.println(money_to_account.money);
-
                 cur_amount_from.setText("" + money_from_account.money);
 
             }
@@ -202,6 +205,7 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         //--------------
         //button logic
         Button transfer_button = (Button)getView().findViewById(R.id.button_ok);
+
         transfer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +217,32 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                 {
                     Toast.makeText(getContext(),"enter an amount", Toast.LENGTH_SHORT).show();
                     return;
+                }
+
+                if(spinner_to_account.getSelectedItem().equals("PENSION"))
+                {
+                    Toast.makeText(getContext(), "PENSION ACC CHOSEN", Toast.LENGTH_SHORT).show();
+
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    Log.d("asd","hi");
+                    normal_layout.setVisibility(View.INVISIBLE);
+
+                    if( getFragmentManager().findFragmentByTag(myfrag.getClass().getName()) != null)
+                    {
+                        fragmentTransaction.remove(myfrag);
+                    }
+                    else
+                    {
+
+                        NemIdFragment myfrag = new NemIdFragment();
+                        fragmentTransaction = getChildFragmentManager().beginTransaction();
+
+                        //fragmentTransaction.add(R.id.nem_id_fragment, myfrag, NemIdFragment.class.getName());
+                    }
+
+                    nem_id_fragment.setVisibility(View.VISIBLE);
+                    fragmentTransaction.replace(R.id.nem_id_fragment, myfrag).commit();
+
                 }
 
                 if(!money_from_account.withdraw(Float.parseFloat(input_field.getText().toString())))

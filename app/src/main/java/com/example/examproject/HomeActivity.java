@@ -14,12 +14,12 @@ import android.widget.ImageButton;
 import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.Customer.Customer;
 
-public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener {
+public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener, NemIdFragment.OnFragmentInteractionListener {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     TransferFragment myfrag = new TransferFragment();
-
+    NemIdFragment nemIdFragment = new NemIdFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

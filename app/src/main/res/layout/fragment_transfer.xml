@@ -9,104 +9,132 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/tv_cur_amount_to"
-        android:layout_width="79dp"
-        android:layout_height="35dp"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/nem_id_fragment"
+        android:layout_width="332dp"
+        android:layout_height="530dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/spinner_transfer_to_account"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.403" />
-
-    <EditText
-        android:id="@+id/input_amount"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_transfer_to_account" />
-
-    <Spinner
-        android:id="@+id/spinner_transfer_from_account"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_transfer_to_account"
+        app:layout_constraintBottom_toBottomOf="@+id/normal_layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952" />
+        app:layout_constraintVertical_bias="0.043">
 
-    <Spinner
-        android:id="@+id/spinner_transfer_to_account"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="276dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button_ok"
-        android:layout_width="186dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/ok"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_amount" />
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/normal_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="27dp">
 
-    <Spinner
-        android:id="@+id/spinner_person_transfer_to"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_transfer_from_account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/button_ok"
+            android:layout_width="186dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/ok"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.373"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_amount" />
 
-    <TextView
-        android:id="@+id/tv_person"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:text="@string/person_to_transfer_to"
-        app:layout_constraintBottom_toTopOf="@+id/spinner_person_transfer_to"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Spinner
+            android:id="@+id/spinner_transfer_from_account"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_transfer_to_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.372"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.952" />
 
-    <TextView
-        android:id="@+id/tv_cur_amount_from"
-        android:layout_width="79dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toEndOf="@+id/spinner_transfer_from_account"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        <TextView
+            android:id="@+id/tv_cur_amount_to"
+            android:layout_width="79dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/spinner_transfer_to_account"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.403" />
 
-    <TextView
-        android:id="@+id/tv_person_from"
-        android:layout_width="238dp"
-        android:layout_height="27dp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_person"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.346"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.465" />
+        <Spinner
+            android:id="@+id/spinner_person_transfer_to"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="52dp"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_transfer_from_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.372"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_cur_amount_from"
+            android:layout_width="79dp"
+            android:layout_height="35dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.272"
+            app:layout_constraintStart_toEndOf="@+id/spinner_transfer_from_account"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
+
+        <Spinner
+            android:id="@+id/spinner_transfer_to_account"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="276dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.372"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_person"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:text="@string/person_to_transfer_to"
+            app:layout_constraintBottom_toTopOf="@+id/spinner_person_transfer_to"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.372"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/input_amount"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.372"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_transfer_to_account" />
+
+        <TextView
+            android:id="@+id/tv_person_from"
+            android:layout_width="238dp"
+            android:layout_height="27dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_person"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.346"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.465" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
