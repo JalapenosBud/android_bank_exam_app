@@ -11,8 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.examproject.BankAccounts.Bank;
+import com.example.examproject.Customer.Customer;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -81,10 +89,32 @@ public class NemIdFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ListView lv_nemid = (ListView)getView().findViewById(R.id.lv_nemid);
-
         ListAdapter strAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, nemID.nem_id_list);
+        Button btn_nem_id = (Button)getView().findViewById(R.id.btn_nem_id_ok);
+        TextView tv_input_value = (TextView)getView().findViewById(R.id.tv_input_value);
+
 
         lv_nemid.setAdapter(strAdapter);
+
+        btn_nem_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (String s : nemID.nem_id_list) {
+
+                    if(s.equals(tv_input_value.getText().toString()))
+                    {
+                        System.out.println(s);
+                        Toast.makeText(getContext(),"VALIDATED SUCCESFULLY", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext(),"WRONG CODE", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

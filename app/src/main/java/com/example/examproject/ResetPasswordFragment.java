@@ -105,8 +105,7 @@ public class ResetPasswordFragment extends Fragment {
                     return;
                 }
 
-                for (Customer c :
-                        Bank.customers) {
+                for (Customer c : Bank.customers) {
 
                     if(c.first_name.equals(username_input))
                     {
