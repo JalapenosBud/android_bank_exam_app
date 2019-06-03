@@ -82,27 +82,21 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 for (Customer c :
                         Bank.customers) {
-                    if(c.first_name.equals(username_input.getText().toString()))
+                    if(c.first_name.equals(username_input.getText().toString()) && c.password.equals(password_input.getText().toString()))
                     {
-
                         Bank.logged_in_customer = c;
-                        System.out.println(c);
                         startActivity(sign_in_intent);
                         Toast.makeText(getApplicationContext(),"HI " + username_input.getText(), Toast.LENGTH_SHORT).show();
                         break;
                     }
                     else
                     {
-                        System.out.println("wrong");
                         Toast.makeText(getApplicationContext(),"Wrong username, try again." + c.first_name + " u: " + username_input.getText(), Toast.LENGTH_SHORT).show();
                     }
                 }
-                //startactivity starts a new activity
 
-            //startActivity(sign_in_intent);
 
             }
         });
