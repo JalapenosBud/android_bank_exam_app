@@ -112,6 +112,9 @@ public class NemIdFragment extends Fragment {
                         Toast.makeText(getContext(),"WRONG CODE", Toast.LENGTH_SHORT).show();
                     }
                 }
+
+                getActivity().findViewById(R.id.nem_id_fragment).setVisibility(View.INVISIBLE);
+                getActivity().findViewById(R.id.normal_layout).setVisibility(View.VISIBLE);
             }
         });
 

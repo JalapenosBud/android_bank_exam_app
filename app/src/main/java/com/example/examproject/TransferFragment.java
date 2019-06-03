@@ -64,6 +64,8 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     Customer chosen_customer = new Customer();
 
     ArrayList<String> chosen_customer_list = new ArrayList<>();
+
+    public static boolean hasValidated = false;
     @Override
     public void onCustomerSelected(Customer customer) {
 
@@ -120,9 +122,7 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         {
             logged_in_customer.add(acc.toString());
         }
-
         myfrag = new NemIdFragment();
-
 
         nem_id_fragment = (View)getView().findViewById(R.id.nem_id_fragment);
         normal_layout = (View)getView().findViewById(R.id.normal_layout);
@@ -221,10 +221,7 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
                 if(spinner_to_account.getSelectedItem().equals("PENSION"))
                 {
-                    Toast.makeText(getContext(), "PENSION ACC CHOSEN", Toast.LENGTH_SHORT).show();
-
                     fragmentTransaction = fragmentManager.beginTransaction();
-                    Log.d("asd","hi");
                     normal_layout.setVisibility(View.INVISIBLE);
 
                     if( getFragmentManager().findFragmentByTag(myfrag.getClass().getName()) != null)
@@ -233,22 +230,18 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                     }
                     else
                     {
-
                         NemIdFragment myfrag = new NemIdFragment();
                         fragmentTransaction = getChildFragmentManager().beginTransaction();
-
                         //fragmentTransaction.add(R.id.nem_id_fragment, myfrag, NemIdFragment.class.getName());
                     }
 
                     nem_id_fragment.setVisibility(View.VISIBLE);
                     fragmentTransaction.replace(R.id.nem_id_fragment, myfrag).commit();
-
                 }
 
                 if(!money_from_account.withdraw(Float.parseFloat(input_field.getText().toString())))
                 {
                     Toast.makeText(getContext(), "Not enough money left on the account",Toast.LENGTH_SHORT).show();
-                    return;
                 }
                 else
                 {
@@ -259,9 +252,9 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                     money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
 
                 }
-
                 cur_amount_from.setText("" + money_from_account.money);
                 cur_amount_to.setText("" + money_to_account.money);
+
             }
         });
 
@@ -284,19 +277,21 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
+        System.out.println("attached");
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        System.out.println("detached");
     }
 
     /**
