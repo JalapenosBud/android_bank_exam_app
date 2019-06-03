@@ -20,15 +20,15 @@
             android:id="@+id/password_input"
             android:layout_width="177dp"
             android:layout_height="35dp"
-            android:text="@string/_123"
+            android:autofillHints=""
             android:inputType="textPassword"
+            android:text="@string/_123"
             app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_password"
-            app:layout_constraintVertical_bias="0.125"
-            android:autofillHints="" />
+            app:layout_constraintVertical_bias="0.125" />
 
         <TextView
             android:id="@+id/tv_username"
@@ -100,14 +100,26 @@
             android:id="@+id/username_input"
             android:layout_width="179dp"
             android:layout_height="33dp"
-            android:text="@string/lars"
+            android:importantForAutofill="no"
             android:inputType="text"
+            android:text="@string/lars"
             app:layout_constraintBottom_toTopOf="@+id/tv_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_username"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+        <Button
+            android:id="@+id/btn_reset_pw"
+            android:layout_width="179dp"
+            android:layout_height="39dp"
+            android:text="RESET PASSWORD"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_register_front_page"
+            app:layout_constraintVertical_bias="0.6" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout

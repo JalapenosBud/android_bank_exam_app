@@ -20,11 +20,13 @@ import com.example.examproject.BankAccounts.PensionAccount;
 import com.example.examproject.BankAccounts.SavingsAccount;
 import com.example.examproject.Customer.Customer;
 
-public class FrontPageActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, OnCustomerRegister {
+public class FrontPageActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, ResetPasswordFragment.OnFragmentInteractionListener, OnCustomerRegister {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     RegisterFragment registerFragment = new RegisterFragment();
+
+    ResetPasswordFragment resetPasswordFragment = new ResetPasswordFragment();
 
     Bank bank;
     BankFactory factory = new BankFactory();
@@ -33,6 +35,7 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.front_page);
 
+        //--------- BANK --------------
         bank = new Bank();
 
         Customer peter = new Customer("peter", "hansen","123","Copenhagen");
@@ -54,6 +57,9 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         Bank.add(new Customer("tjo", "haiti","123","Odense"));
         Bank.add(new Customer("soren", "hansen","123","Odense"));
 
+        //-----------------------
+
+        //---------- VIEWS -------------
         View main_view = (View)findViewById(R.id.front_page_layout);
         Button sign_in = (Button) findViewById(R.id.button_sign_in);
         Button register_button = (Button)findViewById(R.id.button_register_front_page);
@@ -62,9 +68,16 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         EditText password_input = (EditText)findViewById(R.id.password_input);
 
         Intent sign_in_intent = new Intent(this, HomeActivity.class);
-
         View fragment_layout = (View) findViewById(R.id.fragment_register_layout);
+
+        Button btn_reset_password = (Button)findViewById(R.id.btn_reset_pw);
+
+        //-----------------------
+
         fragmentManager = getSupportFragmentManager();
+
+
+        //---------- CALLBACKS -------------
 
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,15 +85,18 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
 
                 for (Customer c :
                         Bank.customers) {
-                    if(username_input.getText().toString().equals(c.first_name))
+                    if(c.first_name.equals(username_input.getText().toString()))
                     {
 
                         Bank.logged_in_customer = c;
                         System.out.println(c);
                         startActivity(sign_in_intent);
+                        Toast.makeText(getApplicationContext(),"HI " + username_input.getText(), Toast.LENGTH_SHORT).show();
+                        break;
                     }
                     else
                     {
+                        System.out.println("wrong");
                         Toast.makeText(getApplicationContext(),"Wrong username, try again." + c.first_name + " u: " + username_input.getText(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -107,6 +123,28 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
                 {
                     RegisterFragment registerFragment = new RegisterFragment();
                     fragmentTransaction.add(R.id.fragment_register_layout, registerFragment, RegisterFragment.class.getName());
+                }
+
+                fragment_layout.setVisibility(View.VISIBLE);
+                fragmentTransaction.commit();
+
+            }
+        });
+
+        btn_reset_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main_view.setVisibility(View.INVISIBLE);
+                fragmentTransaction = fragmentManager.beginTransaction();
+
+                if(getSupportFragmentManager().findFragmentByTag(resetPasswordFragment.getClass().getName()) != null)
+                {
+                    fragmentTransaction.remove(resetPasswordFragment);
+                }
+                else
+                {
+                    ResetPasswordFragment resetPasswordFragment = new ResetPasswordFragment();
+                    fragmentTransaction.add(R.id.fragment_register_layout, resetPasswordFragment, RegisterFragment.class.getName());
                 }
 
                 fragment_layout.setVisibility(View.VISIBLE);
