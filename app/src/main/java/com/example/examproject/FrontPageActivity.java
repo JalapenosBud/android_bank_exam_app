@@ -57,6 +57,9 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         Bank.add(new Customer("tjo", "haiti","123","Odense"));
         Bank.add(new Customer("soren", "hansen","123","Odense"));
 
+
+
+
         //-----------------------
 
         //---------- VIEWS -------------
@@ -106,7 +109,7 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
             public void onClick(View v) {
                 //first call this when returning away from the fragment
                 //fragmentTransaction.addToBackStack(null);
-                main_view.setVisibility(View.INVISIBLE);
+                /*main_view.setVisibility(View.INVISIBLE);
                 fragmentTransaction = fragmentManager.beginTransaction();
 
                 if(getSupportFragmentManager().findFragmentByTag(registerFragment.getClass().getName()) != null)
@@ -121,6 +124,10 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
 
                 fragment_layout.setVisibility(View.VISIBLE);
                 fragmentTransaction.commit();
+*/
+
+                Intent gotoregister = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(gotoregister);
 
             }
         });
@@ -146,6 +153,19 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
 
             }
         });
+
+
+
+
+
+        if(getIntent().getExtras() != null)
+        {
+            Intent intent = getIntent();
+            Customer cust = intent.getExtras().getParcelable("customer");
+
+            Bank.add(cust);
+            System.out.println("ADDED: " + cust);
+        }
 
     }
 
