@@ -99,7 +99,7 @@ public class Customer  implements Parcelable {
 
     @Override
     public String toString() {
-        return "" + last_name + ", " + first_name;
+        return "" + first_name + ", " + last_name;
     }
 
     @Override

@@ -9,6 +9,6 @@ public class DefaultAccount extends Account {
 
     @Override
     public String toString() {
-        return "DEFAULT";
+        return "DEFAULT\t" + money;
     }
 }

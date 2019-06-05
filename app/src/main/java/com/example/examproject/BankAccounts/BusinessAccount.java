@@ -8,6 +8,6 @@ public class BusinessAccount extends Account{
 
     @Override
     public String toString() {
-        return "BUSINESS";
+        return "BUSINESS\t" + money;
     }
 }

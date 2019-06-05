@@ -1,4 +1,4 @@
-package com.example.examproject;
+package com.example.examproject.NemID;
 
 import java.util.ArrayList;
 import java.util.HashMap;

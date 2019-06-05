@@ -1,4 +1,4 @@
-package com.example.examproject;
+package com.example.examproject.Interfaces;
 
 import com.example.examproject.Customer.Customer;
 

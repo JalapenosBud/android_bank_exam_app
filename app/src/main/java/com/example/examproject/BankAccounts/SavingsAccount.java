@@ -13,6 +13,6 @@ public class SavingsAccount extends Account{
 
     @Override
     public String toString() {
-        return "SAVINGS";
+        return "SAVINGS\t" + money;
     }
 }

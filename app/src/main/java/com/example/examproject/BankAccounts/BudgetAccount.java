@@ -9,7 +9,7 @@ public class BudgetAccount extends Account{
 
     @Override
     public String toString() {
-        return "BUDGET";
+        return "BUDGET \t" + money;
     }
 
 

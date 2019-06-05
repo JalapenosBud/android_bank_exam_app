@@ -15,6 +15,6 @@ public class PensionAccount extends Account {
 
     @Override
     public String toString() {
-        return "PENSION";
+        return "PENSION\t" + money;
     }
 }

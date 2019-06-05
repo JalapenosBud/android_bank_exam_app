@@ -1,4 +1,4 @@
-package com.example.examproject;
+package com.example.examproject.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.examproject.BankAccounts.Account;
-import com.example.examproject.BankAccounts.AccountType;
 import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.Customer.Customer;
+import com.example.examproject.Interfaces.OnCustomerSelected;
+import com.example.examproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -206,6 +206,8 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         //button logic
         Button transfer_button = (Button)getView().findViewById(R.id.button_ok);
 
+
+
         transfer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -248,7 +250,6 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                     Toast.makeText(getContext(),
                             spinner_person.getSelectedItem() +  " transfered " + input_field.getText().toString() + " from " + spinner_from_account.getSelectedItem() + " to " + spinner_to_account.getSelectedItem()
                             , Toast.LENGTH_SHORT).show();
-                    money_from_account.withdraw(Float.parseFloat(input_field.getText().toString()));
                     money_to_account.deposit(Float.parseFloat(input_field.getText().toString()));
 
                 }

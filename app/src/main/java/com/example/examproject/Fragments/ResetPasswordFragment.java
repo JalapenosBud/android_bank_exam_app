@@ -1,4 +1,4 @@
-package com.example.examproject;
+package com.example.examproject.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.Customer.Customer;
+import com.example.examproject.R;
 
 
 /**

@@ -1,7 +1,6 @@
-package com.example.examproject;
+package com.example.examproject.Activities;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.examproject.Customer.Customer;
+import com.example.examproject.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

@@ -1,7 +1,6 @@
-package com.example.examproject;
+package com.example.examproject.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.examproject.Customer.Customer;
+import com.example.examproject.Interfaces.OnCustomerRegister;
+import com.example.examproject.R;
 
 
 /**

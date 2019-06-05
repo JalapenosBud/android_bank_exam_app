@@ -1,4 +1,4 @@
-package com.example.examproject;
+package com.example.examproject.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +18,10 @@ import com.example.examproject.BankAccounts.BusinessAccount;
 import com.example.examproject.BankAccounts.PensionAccount;
 import com.example.examproject.BankAccounts.SavingsAccount;
 import com.example.examproject.Customer.Customer;
+import com.example.examproject.Fragments.RegisterFragment;
+import com.example.examproject.Fragments.ResetPasswordFragment;
+import com.example.examproject.Interfaces.OnCustomerRegister;
+import com.example.examproject.R;
 
 public class FrontPageActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, ResetPasswordFragment.OnFragmentInteractionListener, OnCustomerRegister {
 
@@ -107,24 +110,6 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //first call this when returning away from the fragment
-                //fragmentTransaction.addToBackStack(null);
-                /*main_view.setVisibility(View.INVISIBLE);
-                fragmentTransaction = fragmentManager.beginTransaction();
-
-                if(getSupportFragmentManager().findFragmentByTag(registerFragment.getClass().getName()) != null)
-                {
-                    fragmentTransaction.remove(registerFragment);
-                }
-                else
-                {
-                    RegisterFragment registerFragment = new RegisterFragment();
-                    fragmentTransaction.add(R.id.fragment_register_layout, registerFragment, RegisterFragment.class.getName());
-                }
-
-                fragment_layout.setVisibility(View.VISIBLE);
-                fragmentTransaction.commit();
-*/
 
                 Intent gotoregister = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(gotoregister);
@@ -189,7 +174,5 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
     @Override
     public void CustomerRegister(Customer customer) {
         Bank.add(customer);
-        Log.d("customer", "Customer created with: " + customer.first_name+ ", " +
-                customer.last_name + ", " + customer.password + ", total customers in bank: " + Bank.customers.size());
     }
 }
