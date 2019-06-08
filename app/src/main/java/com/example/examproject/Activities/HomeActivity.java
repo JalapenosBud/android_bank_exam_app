@@ -13,11 +13,11 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.example.examproject.BankAccounts.Account;
+import com.example.examproject.TransferMoneyBetweenAccounts.Account;
 import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.Fragments.NemIdFragment;
+import com.example.examproject.TransferMoneyBetweenAccounts.NemIdFragment;
 import com.example.examproject.Fragments.PayBillsFragment;
-import com.example.examproject.Fragments.TransferFragment;
+import com.example.examproject.TransferMoneyBetweenAccounts.TransferFragment;
 import com.example.examproject.R;
 
 public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener, NemIdFragment.OnFragmentInteractionListener, PayBillsFragment.OnFragmentInteractionListener {
@@ -38,7 +38,8 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
         Button btn_transactions = (Button)findViewById(R.id.button_transactions);
         Button btn_pay_bills = (Button)findViewById(R.id.button_bills);
 
-        View fragment_layout = (View) findViewById(R.id.fragment_layout);
+        View transfer_money_layout = (View) findViewById(R.id.transfer_money_fragment);
+        View paybills_fragment = (View) findViewById(R.id.pay_bills_fragment);
         View sv_main = (View)findViewById(R.id.sv_main);
 
         fragmentManager = getSupportFragmentManager();
@@ -49,12 +50,12 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
 
         GridView home_grid = (GridView) findViewById(R.id.home_grid_layout);
 
-        ListAdapter listAdapter = new ArrayAdapter<Account>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, Bank.logged_in_customer.accounts);
+        ListAdapter listAdapter = new ArrayAdapter<Account>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, Bank.get_logged_in_customer.accounts);
 
 
         home_grid.setAdapter(listAdapter);
 
-        tv_name_as.setText("LOGGED IN AS: " + Bank.logged_in_customer.toString());
+        tv_name_as.setText(/*"LOGGED IN AS: " + Bank.get_logged_in_customer.toString()*/ Bank.get_logged_in_customer.accounts.get(0).getMoneyAndAccountString());
         //CALLBACKS
 
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +63,8 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
             public void onClick(View v) {
                 getSupportFragmentManager().popBackStack();
                 fragmentTransaction.addToBackStack(null);
-                fragment_layout.setVisibility(View.INVISIBLE);
-
+                transfer_money_layout.setVisibility(View.INVISIBLE);
+                paybills_fragment.setVisibility(View.INVISIBLE);
                 sv_main.setVisibility(View.VISIBLE);
                 //only use commit when leaving the activity
                 //fragmentTransaction.commit();
@@ -76,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 fragmentTransaction = fragmentManager.beginTransaction();
                 Log.d("asd","hi");
                 sv_main.setVisibility(View.INVISIBLE);
-
+                paybills_fragment.setVisibility(View.INVISIBLE);
                 if(getSupportFragmentManager().findFragmentByTag(transferFragment.getClass().getName()) != null)
                 {
                     fragmentTransaction.remove(transferFragment);
@@ -84,10 +85,10 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 else
                 {
                     TransferFragment myfrag = new TransferFragment();
-                    fragmentTransaction.add(R.id.fragment_layout, myfrag, TransferFragment.class.getName());
+                    fragmentTransaction.add(R.id.transfer_money_fragment, myfrag, TransferFragment.class.getName());
                 }
 
-                fragment_layout.setVisibility(View.VISIBLE);
+                transfer_money_layout.setVisibility(View.VISIBLE);
                 fragmentTransaction.commit();
             }
         });
@@ -98,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 fragmentTransaction = fragmentManager.beginTransaction();
 
                 sv_main.setVisibility(View.INVISIBLE);
-
+                transfer_money_layout.setVisibility(View.INVISIBLE);
                 if(getSupportFragmentManager().findFragmentByTag(payBillsFragment.getClass().getName()) != null)
                 {
                     fragmentTransaction.remove(payBillsFragment);
@@ -106,10 +107,10 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 else
                 {
                     PayBillsFragment payBillsFragment = new PayBillsFragment();
-                    fragmentTransaction.add(R.id.fragment_layout, payBillsFragment, PayBillsFragment.class.getName());
+                    fragmentTransaction.add(R.id.pay_bills_fragment, payBillsFragment, PayBillsFragment.class.getName());
                 }
 
-                fragment_layout.setVisibility(View.VISIBLE);
+                paybills_fragment.setVisibility(View.VISIBLE);
                 fragmentTransaction.commit();
             }
         });

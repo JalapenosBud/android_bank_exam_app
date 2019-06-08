@@ -1,16 +1,9 @@
-package com.example.examproject.Customer;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.examproject.BankAccounts.Account;
-import com.example.examproject.BankAccounts.AccountType;
 import com.example.examproject.BankAccounts.BankFactory;
-import com.example.examproject.BankAccounts.BudgetAccount;
-import com.example.examproject.BankAccounts.BusinessAccount;
-import com.example.examproject.BankAccounts.DefaultAccount;
-import com.example.examproject.BankAccounts.PensionAccount;
-import com.example.examproject.BankAccounts.SavingsAccount;
 
 import java.util.ArrayList;
 
@@ -32,7 +25,8 @@ public class Customer  implements Parcelable {
 
     private BankFactory factory = new BankFactory();
 
-    public Customer() {
+    public Customer()
+    {
 
     }
 
@@ -45,9 +39,6 @@ public class Customer  implements Parcelable {
         accounts = new ArrayList<>();
         accounts.add(new DefaultAccount());
         accounts.add(new BudgetAccount());
-        //accounts.add(new SavingsAccount());
-        //accounts.add(new BusinessAccount());
-        //accounts.add(new PensionAccount());
 
         accounts.set(0,factory.getAccount(AccountType.DEFAULT));
         accounts.set(1,factory.getAccount(AccountType.BUDGET));
@@ -67,9 +58,6 @@ public class Customer  implements Parcelable {
         accounts = new ArrayList<>();
         accounts.add(new DefaultAccount());
         accounts.add(new BudgetAccount());
-        //accounts.add(new SavingsAccount());
-        //accounts.add(new BusinessAccount());
-        //accounts.add(new PensionAccount());
 
         accounts.set(0,factory.getAccount(AccountType.DEFAULT));
         accounts.set(1,factory.getAccount(AccountType.BUDGET));

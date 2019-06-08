@@ -1,4 +1,4 @@
-package com.example.examproject.BankAccounts;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
 public enum AccountType {
     BUDGET,

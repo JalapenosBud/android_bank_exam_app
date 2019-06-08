@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.examproject.Customer.Customer;
+import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
 import com.example.examproject.Interfaces.OnCustomerRegister;
 import com.example.examproject.R;
 
@@ -90,6 +90,7 @@ public class RegisterFragment extends Fragment implements OnCustomerRegister {
                 first_name = (EditText)getView().findViewById(R.id.firstnameinput);
                 last_name  = (EditText)getView().findViewById(R.id.lastnameinput);
                 password =   (EditText)getView().findViewById(R.id.passwordinput);
+
                 Customer temp_customer = new Customer(first_name.getText().toString(),
                         last_name.getText().toString(),
                         password.getText().toString(),

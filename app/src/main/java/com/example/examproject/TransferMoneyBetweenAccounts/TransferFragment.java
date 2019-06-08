@@ -1,4 +1,4 @@
-package com.example.examproject.Fragments;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
 import android.content.Context;
 import android.net.Uri;
@@ -19,14 +19,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.examproject.BankAccounts.Account;
 import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.Customer.Customer;
 import com.example.examproject.Interfaces.OnCustomerSelected;
 import com.example.examproject.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -52,7 +49,7 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
     View nem_id_fragment;
     View normal_layout;
-
+    View paybillsfrag;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     NemIdFragment myfrag;
@@ -110,40 +107,34 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText input_field = (EditText)getView().findViewById(R.id.input_amount);
+        //TEXTVIEWS
         TextView cur_amount_from = (TextView)getView().findViewById(R.id.tv_cur_amount_from);
         TextView cur_amount_to = (TextView)getView().findViewById(R.id.tv_cur_amount_to);
-
-        //-----------------
-        List<Customer> customers = Bank.getCustomers();
-
-        ArrayList<String> logged_in_customer = new ArrayList<>();
-        for (Account acc : Bank.logged_in_customer.accounts)
-        {
-            logged_in_customer.add(acc.toString());
-        }
-        myfrag = new NemIdFragment();
-
-        nem_id_fragment = (View)getView().findViewById(R.id.nem_id_fragment);
-        normal_layout = (View)getView().findViewById(R.id.normal_layout);
-        fragmentManager = getFragmentManager();
-        //-----------------
-        //Spinner logic
         TextView tv_from_person = (TextView)getView().findViewById(R.id.tv_person_from);
+        //EDITTEXT
+        EditText input_field = (EditText)getView().findViewById(R.id.input_amount);
+        //SPINNERS
         Spinner spinner_person = (Spinner)getView().findViewById(R.id.spinner_person_transfer_to);
         Spinner spinner_from_account = (Spinner)getView().findViewById(R.id.spinner_transfer_from_account);
         Spinner spinner_to_account = (Spinner)getView().findViewById(R.id.spinner_transfer_to_account);
-
-        tv_from_person.setText("" + Bank.logged_in_customer);
-
-        ArrayAdapter<Customer> customerAdapter = new ArrayAdapter<Customer>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,customers);
+        //ADAPTERS
+        ArrayAdapter<Customer> customerAdapter = new ArrayAdapter<Customer>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,Bank.getCustomers());
+        ArrayAdapter<String> logged_in_adapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,Bank.getCurrentCustomerAccounts());
+        //BUTTONS
+        Button transfer_button = (Button)getView().findViewById(R.id.button_ok);
+        //FRAGMENT
+        nem_id_fragment = (View)getView().findViewById(R.id.nem_id_fragment);
+        paybillsfrag = (View)getView().findViewById(R.id.pay_bills_fragment);
+        //LAYOUT
+        normal_layout = (View)getView().findViewById(R.id.normal_layout);
+        //INIT LOGIC
+        tv_from_person.setText("" + Bank.get_logged_in_customer);
         spinner_person.setAdapter(customerAdapter);
-
-        //logged in custumer adapter
-        ArrayAdapter<String> logged_in_adapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,logged_in_customer);
         spinner_from_account.setAdapter(logged_in_adapter);
+        myfrag = new NemIdFragment();
+        fragmentManager = getFragmentManager();
 
-
+        //CALLBACKS
         spinner_person.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -162,18 +153,13 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             }
         });
 
-        //når man vælger en account så skal text view money opdateres til den værdi
         spinner_from_account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //den loggede ind customer
-                current_customer = Bank.logged_in_customer;
-
-                //få id af valgte spinner
+                //TODO: test if changing to singleto breaks anything
+                current_customer = Bank.get_logged_in_customer;
                 money_from_account = current_customer.accounts.get(spinner_from_account.getSelectedItemPosition());
-                //System.out.println(money_to_account.money);
                 cur_amount_from.setText("" + money_from_account.money);
-
             }
 
             @Override
@@ -185,12 +171,8 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         spinner_to_account.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //få id af valgte customer i spinner
                 current_customer = customerAdapter.getItem(position);
-
-                //den valgte customer i "transfer to customer" spinner
                 money_to_account = chosen_customer.accounts.get(spinner_to_account.getSelectedItemPosition());
-
                 cur_amount_to.setText("" + money_to_account.money);
             }
 
@@ -200,21 +182,10 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
             }
         });
 
-        //------------------
-
-        //--------------
-        //button logic
-        Button transfer_button = (Button)getView().findViewById(R.id.button_ok);
-
-
-
         transfer_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //DEPOSIT
-
                 String input = input_field.getText().toString();
-
                 if(input == null || input.trim().equals(""))
                 {
                     Toast.makeText(getContext(),"enter an amount", Toast.LENGTH_SHORT).show();
@@ -232,9 +203,7 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
                     }
                     else
                     {
-                        NemIdFragment myfrag = new NemIdFragment();
                         fragmentTransaction = getChildFragmentManager().beginTransaction();
-                        //fragmentTransaction.add(R.id.nem_id_fragment, myfrag, NemIdFragment.class.getName());
                     }
 
                     nem_id_fragment.setVisibility(View.VISIBLE);
@@ -258,7 +227,6 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
 
             }
         });
-
     }
 
     @Override

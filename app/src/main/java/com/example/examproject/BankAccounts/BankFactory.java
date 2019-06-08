@@ -1,5 +1,13 @@
 package com.example.examproject.BankAccounts;
 
+import com.example.examproject.TransferMoneyBetweenAccounts.Account;
+import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
+import com.example.examproject.TransferMoneyBetweenAccounts.BudgetAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.BusinessAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.DefaultAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.PensionAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.SavingsAccount;
+
 public class BankFactory {
 
     public Account getAccount(AccountType accountType)

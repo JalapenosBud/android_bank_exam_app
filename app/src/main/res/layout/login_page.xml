@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.LoginActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fragment_register_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/front_page_layout"
+        android:layout_width="match_parent"
+        android:layout_height="722dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/password_input"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="44dp"
+            android:autofillHints=""
+            android:inputType="textPassword"
+            android:text="@string/_123"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username_input" />
+
+        <TextView
+            android:id="@+id/bank_title"
+            android:layout_width="402dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="120dp"
+            android:text="@string/kea_bank"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/username_input"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@string/lars"
+            app:layout_constraintBottom_toTopOf="@+id/password_input"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bank_title" />
+
+        <Button
+            android:id="@+id/button_sign_in"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/sign_in"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_input"
+            app:layout_constraintVertical_bias="0.101" />
+
+        <Button
+            android:id="@+id/button_register_front_page"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_reset_pw"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_sign_in" />
+
+        <Button
+            android:id="@+id/btn_reset_pw"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="RESET PASSWORD"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/button_register_front_page"
+            app:layout_constraintTop_toBottomOf="@+id/button_sign_in"
+            app:layout_constraintVertical_bias="0.52" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

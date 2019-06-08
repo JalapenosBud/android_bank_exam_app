@@ -1,6 +1,6 @@
-package com.example.examproject.BankAccounts;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
-public class BudgetAccount extends Account{
+public class BudgetAccount extends Account {
     public float amount_of_days_to_insert_money;
 
     public BudgetAccount() {
@@ -9,8 +9,7 @@ public class BudgetAccount extends Account{
 
     @Override
     public String toString() {
-        return "BUDGET \t" + money;
+        return "BUDGET";
     }
-
 
 }

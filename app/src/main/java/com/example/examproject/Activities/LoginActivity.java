@@ -11,19 +11,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.examproject.BankAccounts.AccountType;
+import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
 import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.BankAccounts.BankFactory;
-import com.example.examproject.BankAccounts.BusinessAccount;
-import com.example.examproject.BankAccounts.PensionAccount;
-import com.example.examproject.BankAccounts.SavingsAccount;
-import com.example.examproject.Customer.Customer;
+import com.example.examproject.TransferMoneyBetweenAccounts.BusinessAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.PensionAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.SavingsAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
 import com.example.examproject.Fragments.RegisterFragment;
 import com.example.examproject.Fragments.ResetPasswordFragment;
 import com.example.examproject.Interfaces.OnCustomerRegister;
 import com.example.examproject.R;
 
-public class FrontPageActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, ResetPasswordFragment.OnFragmentInteractionListener, OnCustomerRegister {
+public class LoginActivity extends AppCompatActivity implements RegisterFragment.OnFragmentInteractionListener, ResetPasswordFragment.OnFragmentInteractionListener, OnCustomerRegister {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -36,7 +36,7 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.front_page);
+        setContentView(R.layout.login_page);
 
         //--------- BANK --------------
         bank = new Bank();
@@ -59,9 +59,6 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
         Bank.add(lars);
         Bank.add(new Customer("tjo", "haiti","123","Odense"));
         Bank.add(new Customer("soren", "hansen","123","Odense"));
-
-
-
 
         //-----------------------
 
@@ -92,7 +89,7 @@ public class FrontPageActivity extends AppCompatActivity implements RegisterFrag
                         Bank.customers) {
                     if(c.first_name.equals(username_input.getText().toString()) && c.password.equals(password_input.getText().toString()))
                     {
-                        Bank.logged_in_customer = c;
+                        Bank.get_logged_in_customer = c;
                         startActivity(sign_in_intent);
                         Toast.makeText(getApplicationContext(),"HI " + username_input.getText(), Toast.LENGTH_SHORT).show();
                         break;

@@ -1,6 +1,6 @@
-package com.example.examproject.BankAccounts;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
-public class SavingsAccount extends Account{
+public class SavingsAccount extends Account {
 
     public int savings;
 
@@ -13,6 +13,6 @@ public class SavingsAccount extends Account{
 
     @Override
     public String toString() {
-        return "SAVINGS\t" + money;
+        return "SAVINGS";
     }
 }

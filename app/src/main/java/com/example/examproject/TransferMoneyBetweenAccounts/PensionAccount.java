@@ -1,6 +1,4 @@
-package com.example.examproject.BankAccounts;
-
-import com.example.examproject.Customer.Customer;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
 public class PensionAccount extends Account {
 
@@ -15,6 +13,6 @@ public class PensionAccount extends Account {
 
     @Override
     public String toString() {
-        return "PENSION\t" + money;
+        return "PENSION";
     }
 }

@@ -1,6 +1,7 @@
 package com.example.examproject.BankAccounts;
 
-import com.example.examproject.Customer.Customer;
+import com.example.examproject.TransferMoneyBetweenAccounts.Account;
+import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Bank {
 
     }
 
-    public static Customer logged_in_customer;
+    public static Customer get_logged_in_customer;
 
     public static void add(Customer customer)
     {
@@ -25,6 +26,16 @@ public class Bank {
     public static List<Customer> getCustomers()
     {
         return customers;
+    }
+
+    public static List<String> getCurrentCustomerAccounts(){
+        ArrayList<String> current_customer_account_list = new ArrayList<>();
+        for (Account acc : get_logged_in_customer.accounts)
+        {
+            current_customer_account_list.add(acc.toString());
+        }
+
+        return current_customer_account_list;
     }
 
 }

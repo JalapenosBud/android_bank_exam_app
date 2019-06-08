@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.Customer.Customer;
+import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
 import com.example.examproject.R;
 
 
@@ -110,7 +110,7 @@ public class ResetPasswordFragment extends Fragment {
 
                     if(c.first_name.equals(username_input))
                     {
-                        //Bank.logged_in_customer = c;
+                        //Bank.get_logged_in_customer = c;
                         System.out.println(c);
                         c.password = pass_input;
                         System.out.println(c.password + ", " + pass_input);

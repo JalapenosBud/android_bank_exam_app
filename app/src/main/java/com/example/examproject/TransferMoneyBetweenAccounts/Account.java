@@ -1,4 +1,4 @@
-package com.example.examproject.BankAccounts;
+package com.example.examproject.TransferMoneyBetweenAccounts;
 
 public abstract class Account {
     public float money;
@@ -18,5 +18,11 @@ public abstract class Account {
             return true;
         }
 
+    }
+
+
+    public String getMoneyAndAccountString()
+    {
+        return "" + this.getClass().getSimpleName() + "\t" + money;
     }
 }
