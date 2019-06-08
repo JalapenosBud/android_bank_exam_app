@@ -32,20 +32,21 @@
             android:id="@+id/password_input"
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="296dp"
             android:autofillHints=""
             android:inputType="textPassword"
             android:text="@string/_123"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/username_input" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/bank_title"
             android:layout_width="402dp"
             android:layout_height="52dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="104dp"
             android:text="@string/kea_bank"
             android:textAlignment="center"
             android:textSize="36sp"
@@ -61,11 +62,14 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:text="@string/lars"
+            android:textAlignment="center"
+            android:textAllCaps="true"
             app:layout_constraintBottom_toTopOf="@+id/password_input"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bank_title" />
+            app:layout_constraintTop_toBottomOf="@+id/bank_title"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/button_sign_in"
@@ -79,7 +83,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_input"
-            app:layout_constraintVertical_bias="0.101" />
+            app:layout_constraintVertical_bias="0.19" />
 
         <Button
             android:id="@+id/button_register_front_page"

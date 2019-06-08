@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
+
+    private static Customer current_logged_in_customer;
+
     public static BankFactory bankFactory = new BankFactory();
 
     public static List<Customer> customers = new ArrayList<>();
@@ -17,6 +20,11 @@ public class Bank {
     }
 
     public static Customer get_logged_in_customer;
+
+    public static void set_logged_in_custumer(Customer customer)
+    {
+        current_logged_in_customer = customer;
+    }
 
     public static void add(Customer customer)
     {
@@ -36,6 +44,17 @@ public class Bank {
         }
 
         return current_customer_account_list;
+    }
+
+    public static List<String> getCurrentAccountNamesAndMoney()
+    {
+        ArrayList<String> money_and_account_list = new ArrayList<>();
+
+        for (Account s : get_logged_in_customer.accounts)
+        {
+            money_and_account_list.add(s.getMoneyAndAccountString());
+        }
+        return money_and_account_list;
     }
 
 }

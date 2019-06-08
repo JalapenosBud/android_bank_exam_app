@@ -99,16 +99,9 @@ public class PayBillsFragment extends Fragment {
         EditText pay_bill_amount = (EditText)getView().findViewById(R.id.paybills_et_enter_amount);
         Button pay_button = (Button)getView().findViewById(R.id.btn_pay_bill);
 
-        ArrayList<String> money_and_account_list = new ArrayList<>();
-
-        for (Account s : Bank.get_logged_in_customer.accounts)
-        {
-            money_and_account_list.add(s.getMoneyAndAccountString());
-        }
-
 
         Spinner choose_acc_spinner = (Spinner)getView().findViewById(R.id.spinner_paybill_from_account);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,money_and_account_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,Bank.getCurrentAccountNamesAndMoney());
 
         choose_acc_spinner.setAdapter(adapter);
 
@@ -153,7 +146,9 @@ public class PayBillsFragment extends Fragment {
                     Toast.makeText(getContext(), "Not enough money", Toast.LENGTH_SHORT).show();
                 }
 
-
+                ((ArrayAdapter) adapter).clear();
+                ((ArrayAdapter) adapter).addAll(Bank.getCurrentAccountNamesAndMoney());
+                ((ArrayAdapter) adapter).notifyDataSetChanged();
             }
         });
     }

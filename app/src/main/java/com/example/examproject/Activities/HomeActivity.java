@@ -1,5 +1,6 @@
 package com.example.examproject.Activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.examproject.TransferMoneyBetweenAccounts.Account;
 import com.example.examproject.BankAccounts.Bank;
@@ -37,25 +39,19 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
         Button btn_home = (Button)findViewById(R.id.button_home);
         Button btn_transactions = (Button)findViewById(R.id.button_transactions);
         Button btn_pay_bills = (Button)findViewById(R.id.button_bills);
+        Button btn_logout = (Button)findViewById(R.id.button_logout);
 
         View transfer_money_layout = (View) findViewById(R.id.transfer_money_fragment);
         View paybills_fragment = (View) findViewById(R.id.pay_bills_fragment);
         View sv_main = (View)findViewById(R.id.sv_main);
-
         fragmentManager = getSupportFragmentManager();
 
         //classes
-
         TextView tv_name_as = (TextView) findViewById(R.id.tv_logged_in_name);
-
         GridView home_grid = (GridView) findViewById(R.id.home_grid_layout);
-
-        ListAdapter listAdapter = new ArrayAdapter<Account>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, Bank.get_logged_in_customer.accounts);
-
-
+        ListAdapter listAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, Bank.getCurrentAccountNamesAndMoney());
         home_grid.setAdapter(listAdapter);
-
-        tv_name_as.setText(/*"LOGGED IN AS: " + Bank.get_logged_in_customer.toString()*/ Bank.get_logged_in_customer.accounts.get(0).getMoneyAndAccountString());
+        tv_name_as.setText("WELCOME: " + Bank.get_logged_in_customer.toString());
         //CALLBACKS
 
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +62,24 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 transfer_money_layout.setVisibility(View.INVISIBLE);
                 paybills_fragment.setVisibility(View.INVISIBLE);
                 sv_main.setVisibility(View.VISIBLE);
+
+                ((ArrayAdapter) listAdapter).clear();
+                ((ArrayAdapter) listAdapter).addAll(Bank.getCurrentAccountNamesAndMoney());
+                ((ArrayAdapter) listAdapter).notifyDataSetChanged();
+
                 //only use commit when leaving the activity
                 //fragmentTransaction.commit();
+            }
+        });
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logout_intent = new Intent(getApplicationContext(), LoginActivity.class);
+                //dereference logged in customer
+                Toast.makeText(getApplicationContext(), "Bye " + Bank.get_logged_in_customer, Toast.LENGTH_SHORT).show();
+                Bank.set_logged_in_custumer(null);
+                startActivity(logout_intent);
             }
         });
 
@@ -75,7 +87,7 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
             @Override
             public void onClick(View v) {
                 fragmentTransaction = fragmentManager.beginTransaction();
-                Log.d("asd","hi");
+
                 sv_main.setVisibility(View.INVISIBLE);
                 paybills_fragment.setVisibility(View.INVISIBLE);
                 if(getSupportFragmentManager().findFragmentByTag(transferFragment.getClass().getName()) != null)
@@ -121,7 +133,13 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
     @Override
     protected void onPause() {
         super.onPause();
-        fragmentTransaction.commit();
+        //fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("resumed");
     }
 
     @Override
