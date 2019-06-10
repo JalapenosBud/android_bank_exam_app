@@ -65,10 +65,11 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 fragmentTransaction.addToBackStack(null);
                 transfer_money_layout.setVisibility(View.INVISIBLE);
                 paybills_fragment.setVisibility(View.INVISIBLE);
+                findViewById(R.id.apply_for_acc_layout).setVisibility(View.INVISIBLE);
                 sv_main.setVisibility(View.VISIBLE);
 
                 ((ArrayAdapter) listAdapter).clear();
-                ((ArrayAdapter) listAdapter).addAll(Bank.getCurrentAccountNamesAndMoney());
+                ((ArrayAdapter) listAdapter).addAll(Bank.get_logged_in_customer.getCurrentAccountNamesAndMoney());
                 ((ArrayAdapter) listAdapter).notifyDataSetChanged();
 
                 //only use commit when leaving the activity
@@ -139,6 +140,7 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 sv_main.setVisibility(View.INVISIBLE);
                 paybills_fragment.setVisibility(View.INVISIBLE);
                 transfer_money_layout.setVisibility(View.INVISIBLE);
+                findViewById(R.id.apply_for_acc_layout).setVisibility(View.VISIBLE);
                 if(getSupportFragmentManager().findFragmentByTag(applyFragment.getClass().getName()) != null)
                 {
                     fragmentTransaction.remove(applyFragment);
@@ -148,8 +150,6 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                     ApplyFragment applyFragment = new ApplyFragment();
                     fragmentTransaction.add(R.id.apply_for_acc_layout, applyFragment, ApplyFragment.class.getName());
                 }
-
-                transfer_money_layout.setVisibility(View.VISIBLE);
                 fragmentTransaction.commit();
             }
         });

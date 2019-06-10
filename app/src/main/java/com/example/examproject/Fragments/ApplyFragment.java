@@ -91,9 +91,10 @@ public class ApplyFragment extends Fragment {
 
         Spinner spinner_apply = (Spinner)getView().findViewById(R.id.spinner_account_apply);
         SpinnerAdapter listAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, Bank.getCurrentAccountNamesAndMoney());
-        Customer tempcust = new Customer("peter", "larsen","123", "Copenhagen");
+        //Customer tempcust = new Customer("peter", "larsen","123", "Copenhagen");
         PensionAccount pensionAccount = new PensionAccount();
 
+        View apply_view = (View)getView().findViewById(R.id.apply_for_acc_layout) ;
         spinner_apply.setAdapter(listAdapter);
 
         Button btn_submit = (Button)getView().findViewById(R.id.btn_apply_submit);
@@ -102,14 +103,16 @@ public class ApplyFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(!tempcust.accounts.contains(pensionAccount))
+                if(!Bank.get_logged_in_customer.accounts.contains(pensionAccount))
                 {
                     System.out.println(factory.getAccount(AccountType.PENSION));
-                    tempcust.accounts.add(pensionAccount);
+                    Bank.get_logged_in_customer.accounts.add(pensionAccount);
                     System.out.println("ADDED PENSION");
                 }
 
-                System.out.println(tempcust.getActiveAccountsAsString());
+                System.out.println(Bank.get_logged_in_customer.getCurrentAccountNamesAndMoney());
+                getActivity().findViewById(R.id.apply_for_acc_layout).setVisibility(View.INVISIBLE);
+                getActivity().findViewById(R.id.sv_main).setVisibility(View.VISIBLE);
             }
         });
     }

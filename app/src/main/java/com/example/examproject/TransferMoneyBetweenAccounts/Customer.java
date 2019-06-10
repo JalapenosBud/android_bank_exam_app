@@ -3,9 +3,11 @@ package com.example.examproject.TransferMoneyBetweenAccounts;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.BankAccounts.BankFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer  implements Parcelable {
     public int age;
@@ -84,7 +86,16 @@ public class Customer  implements Parcelable {
         }
         return tmplist;
     }
+    public static List<String> getCurrentAccountNamesAndMoney()
+    {
+        ArrayList<String> money_and_account_list = new ArrayList<>();
 
+        for (Account s : Bank.get_logged_in_customer.accounts)
+        {
+            money_and_account_list.add(s.getMoneyAndAccountString());
+        }
+        return money_and_account_list;
+    }
     //public ArrayList<String> getAccountsToApplyFor
 
     @Override

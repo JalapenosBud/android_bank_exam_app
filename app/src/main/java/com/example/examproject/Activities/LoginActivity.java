@@ -42,18 +42,8 @@ public class LoginActivity extends AppCompatActivity implements RegisterFragment
         bank = new Bank();
 
         Customer peter = new Customer("peter", "hansen","123","Copenhagen");
-        peter.accounts.add(new SavingsAccount());
-        peter.accounts.set(2, factory.getAccount(AccountType.SAVINGS));
-
-        peter.accounts.add(new PensionAccount());
-        peter.accounts.set(3, factory.getAccount(AccountType.PENSION));
 
         Customer lars = new Customer("lars", "dudeson","123","Copenhagen");
-        lars.accounts.add(new BusinessAccount());
-        lars.accounts.set(2, factory.getAccount(AccountType.BUSINESS));
-
-        lars.accounts.add(new PensionAccount());
-        lars.accounts.set(3, factory.getAccount(AccountType.PENSION));
 
         Bank.add(peter);
         Bank.add(lars);
