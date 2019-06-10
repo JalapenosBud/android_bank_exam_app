@@ -15,32 +15,36 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.examproject.TransferMoneyBetweenAccounts.Account;
+import com.example.examproject.Fragments.ApplyFragment;
 import com.example.examproject.BankAccounts.Bank;
 import com.example.examproject.TransferMoneyBetweenAccounts.NemIdFragment;
 import com.example.examproject.Fragments.PayBillsFragment;
 import com.example.examproject.TransferMoneyBetweenAccounts.TransferFragment;
 import com.example.examproject.R;
 
-public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener, NemIdFragment.OnFragmentInteractionListener, PayBillsFragment.OnFragmentInteractionListener {
+public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener, NemIdFragment.OnFragmentInteractionListener, PayBillsFragment.OnFragmentInteractionListener, ApplyFragment.OnFragmentInteractionListener {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
     TransferFragment transferFragment = new TransferFragment();
     NemIdFragment nemIdFragment = new NemIdFragment();
     PayBillsFragment payBillsFragment = new PayBillsFragment();
+    ApplyFragment applyFragment = new ApplyFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //VIEWS
+        //BUTTONS
         Button btn_home = (Button)findViewById(R.id.button_home);
-        Button btn_transactions = (Button)findViewById(R.id.button_transactions);
+        Button btn_transactions = (Button)findViewById(R.id.button_transfer_money);
         Button btn_pay_bills = (Button)findViewById(R.id.button_bills);
         Button btn_logout = (Button)findViewById(R.id.button_logout);
+        Button btn_apply = (Button)findViewById(R.id.btn_apply_for_accounts);
 
+
+        //VIEWS
         View transfer_money_layout = (View) findViewById(R.id.transfer_money_fragment);
         View paybills_fragment = (View) findViewById(R.id.pay_bills_fragment);
         View sv_main = (View)findViewById(R.id.sv_main);
@@ -123,6 +127,29 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
                 }
 
                 paybills_fragment.setVisibility(View.VISIBLE);
+                fragmentTransaction.commit();
+            }
+        });
+
+        btn_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentTransaction = fragmentManager.beginTransaction();
+
+                sv_main.setVisibility(View.INVISIBLE);
+                paybills_fragment.setVisibility(View.INVISIBLE);
+                transfer_money_layout.setVisibility(View.INVISIBLE);
+                if(getSupportFragmentManager().findFragmentByTag(applyFragment.getClass().getName()) != null)
+                {
+                    fragmentTransaction.remove(applyFragment);
+                }
+                else
+                {
+                    ApplyFragment applyFragment = new ApplyFragment();
+                    fragmentTransaction.add(R.id.apply_for_acc_layout, applyFragment, ApplyFragment.class.getName());
+                }
+
+                transfer_money_layout.setVisibility(View.VISIBLE);
                 fragmentTransaction.commit();
             }
         });

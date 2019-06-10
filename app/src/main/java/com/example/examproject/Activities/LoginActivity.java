@@ -107,9 +107,23 @@ public class LoginActivity extends AppCompatActivity implements RegisterFragment
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //first call this when returning away from the fragment
+                //fragmentTransaction.addToBackStack(null);
+                main_view.setVisibility(View.INVISIBLE);
+                fragmentTransaction = fragmentManager.beginTransaction();
 
-                Intent gotoregister = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(gotoregister);
+                if(getSupportFragmentManager().findFragmentByTag(registerFragment.getClass().getName()) != null)
+                {
+                    fragmentTransaction.remove(registerFragment);
+                }
+                else
+                {
+                    RegisterFragment registerFragment = new RegisterFragment();
+                    fragmentTransaction.add(R.id.fragment_register_layout, registerFragment, RegisterFragment.class.getName());
+                }
+
+                fragment_layout.setVisibility(View.VISIBLE);
+                fragmentTransaction.commit();
 
             }
         });

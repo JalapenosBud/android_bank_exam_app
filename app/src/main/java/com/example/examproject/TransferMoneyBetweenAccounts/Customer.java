@@ -85,6 +85,8 @@ public class Customer  implements Parcelable {
         return tmplist;
     }
 
+    //public ArrayList<String> getAccountsToApplyFor
+
     @Override
     public String toString() {
         return "" + first_name + ", " + last_name;
