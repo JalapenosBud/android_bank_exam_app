@@ -1,9 +1,11 @@
 package com.example.examproject.BankAccounts;
 
 import com.example.examproject.TransferMoneyBetweenAccounts.Account;
+import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
 import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Bank {
@@ -18,6 +20,11 @@ public class Bank {
     {
 
     }
+
+    private static List<Account> applicable_accounts = new ArrayList<>(
+            Arrays.asList(bankFactory.getAccount(AccountType.SAVINGS),
+                        bankFactory.getAccount(AccountType.PENSION),
+                        bankFactory.getAccount(AccountType.BUSINESS)));
 
     public static Customer get_logged_in_customer;
 
@@ -55,6 +62,18 @@ public class Bank {
             money_and_account_list.add(s.getMoneyAndAccountString());
         }
         return money_and_account_list;
+    }
+
+
+    public static ArrayList<String> getApplicableAccounts()
+    {
+        ArrayList<String> applilist = new ArrayList<>();
+
+        for (Account s : applicable_accounts)
+        {
+            applilist.add(s.getMoneyAndAccountString());
+        }
+        return applilist;
     }
 
 }

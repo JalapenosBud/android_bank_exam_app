@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -20,8 +21,12 @@ import com.example.examproject.BankAccounts.BankFactory;
 import com.example.examproject.R;
 import com.example.examproject.TransferMoneyBetweenAccounts.Account;
 import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
+import com.example.examproject.TransferMoneyBetweenAccounts.BudgetAccount;
+import com.example.examproject.TransferMoneyBetweenAccounts.BusinessAccount;
 import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
 import com.example.examproject.TransferMoneyBetweenAccounts.PensionAccount;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +46,7 @@ public class ApplyFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    ArrayList<String> tmp_accounts = new ArrayList<>();
     private OnFragmentInteractionListener mListener;
 
     public ApplyFragment() {
@@ -90,24 +96,49 @@ public class ApplyFragment extends Fragment {
         //have a way to instantiate and add new account to current customer account list
 
         Spinner spinner_apply = (Spinner)getView().findViewById(R.id.spinner_account_apply);
-        SpinnerAdapter listAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, Bank.getCurrentAccountNamesAndMoney());
+        SpinnerAdapter listAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, Bank.getApplicableAccounts());
         //Customer tempcust = new Customer("peter", "larsen","123", "Copenhagen");
-        PensionAccount pensionAccount = new PensionAccount();
+
 
         View apply_view = (View)getView().findViewById(R.id.apply_for_acc_layout) ;
         spinner_apply.setAdapter(listAdapter);
 
         Button btn_submit = (Button)getView().findViewById(R.id.btn_apply_submit);
 
+        spinner_apply.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                //tmp_accounts = Bank.getApplicableAccounts();
+                //tmp_account = Bank.accounts.get(spinner_to_account.getSelectedItemPosition());
+                //tmp_account = (Account)spinner_apply.getSelectedItem();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(!Bank.get_logged_in_customer.accounts.contains(pensionAccount))
+
+                if(!Bank.get_logged_in_customer.accounts.contains(factory.getAccount(AccountType.SAVINGS)))
                 {
-                    System.out.println(factory.getAccount(AccountType.PENSION));
-                    Bank.get_logged_in_customer.accounts.add(pensionAccount);
-                    System.out.println("ADDED PENSION");
+                    Bank.get_logged_in_customer.accounts.add(factory.getAccount(AccountType.SAVINGS));
+                }
+
+
+
+                if(!Bank.get_logged_in_customer.accounts.contains(factory.getAccount(AccountType.BUSINESS)))
+                {
+                    Bank.get_logged_in_customer.accounts.add(factory.getAccount(AccountType.BUSINESS));
+                }
+                if(!Bank.get_logged_in_customer.accounts.contains(factory.getAccount(AccountType.PENSION)))
+                {
+                    Bank.get_logged_in_customer.accounts.add(factory.getAccount(AccountType.PENSION));
                 }
 
                 System.out.println(Bank.get_logged_in_customer.getCurrentAccountNamesAndMoney());

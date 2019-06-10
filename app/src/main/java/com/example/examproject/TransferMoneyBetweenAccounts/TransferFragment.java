@@ -111,22 +111,29 @@ public class TransferFragment extends Fragment implements OnCustomerSelected {
         TextView cur_amount_from = (TextView)getView().findViewById(R.id.tv_cur_amount_from);
         TextView cur_amount_to = (TextView)getView().findViewById(R.id.tv_cur_amount_to);
         TextView tv_from_person = (TextView)getView().findViewById(R.id.tv_person_from);
+
         //EDITTEXT
         EditText input_field = (EditText)getView().findViewById(R.id.input_amount);
+
         //SPINNERS
         Spinner spinner_person = (Spinner)getView().findViewById(R.id.spinner_person_transfer_to);
         Spinner spinner_from_account = (Spinner)getView().findViewById(R.id.spinner_transfer_from_account);
         Spinner spinner_to_account = (Spinner)getView().findViewById(R.id.spinner_transfer_to_account);
+
         //ADAPTERS
         ArrayAdapter<Customer> customerAdapter = new ArrayAdapter<Customer>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,Bank.getCustomers());
         ArrayAdapter<String> logged_in_adapter = new ArrayAdapter<String>(getView().getContext(), R.layout.support_simple_spinner_dropdown_item,Bank.getCurrentCustomerAccounts());
+
         //BUTTONS
         Button transfer_button = (Button)getView().findViewById(R.id.button_ok);
+
         //FRAGMENT
         nem_id_fragment = (View)getView().findViewById(R.id.nem_id_fragment);
         paybillsfrag = (View)getView().findViewById(R.id.pay_bills_fragment);
+
         //LAYOUT
         normal_layout = (View)getView().findViewById(R.id.normal_layout);
+
         //INIT LOGIC
         tv_from_person.setText("" + Bank.get_logged_in_customer);
         spinner_person.setAdapter(customerAdapter);

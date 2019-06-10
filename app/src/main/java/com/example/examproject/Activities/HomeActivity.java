@@ -61,8 +61,13 @@ public class HomeActivity extends AppCompatActivity implements TransferFragment.
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSupportFragmentManager().popBackStack();
-                fragmentTransaction.addToBackStack(null);
+
+                if(fragmentTransaction != null)
+                {
+                    getSupportFragmentManager().popBackStack();
+                    fragmentTransaction.addToBackStack(null);
+                }
+
                 transfer_money_layout.setVisibility(View.INVISIBLE);
                 paybills_fragment.setVisibility(View.INVISIBLE);
                 findViewById(R.id.apply_for_acc_layout).setVisibility(View.INVISIBLE);
