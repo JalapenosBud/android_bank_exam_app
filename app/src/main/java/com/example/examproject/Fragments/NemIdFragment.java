@@ -1,4 +1,4 @@
-package com.example.examproject.TransferMoneyBetweenAccounts;
+package com.example.examproject.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.examproject.R;
+import com.example.examproject.NemID.NemID;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.examproject.TransferMoneyBetweenAccounts;
+package com.example.examproject.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -19,7 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.examproject.BankAccounts.Bank;
+import com.example.examproject.Accounts.Account;
+import com.example.examproject.Bank.Bank;
+import com.example.examproject.Customer.Customer;
 import com.example.examproject.Interfaces.OnCustomerSelected;
 import com.example.examproject.R;
 

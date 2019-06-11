@@ -1,8 +1,8 @@
-package com.example.examproject.BankAccounts;
+package com.example.examproject.Bank;
 
-import com.example.examproject.TransferMoneyBetweenAccounts.Account;
-import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
+import com.example.examproject.Accounts.Account;
+import com.example.examproject.Accounts.AccountType;
+import com.example.examproject.Customer.Customer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

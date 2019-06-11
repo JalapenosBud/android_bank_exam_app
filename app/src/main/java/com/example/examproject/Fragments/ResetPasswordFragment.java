@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
+import com.example.examproject.Bank.Bank;
+import com.example.examproject.Customer.Customer;
 import com.example.examproject.R;
 
 
@@ -91,8 +91,6 @@ public class ResetPasswordFragment extends Fragment {
 
                 String username_input = username_input_field.getText().toString();
                 String pass_input = pass_input_field.getText().toString();
-
-
 
                 if(username_input == null || username_input.trim().equals(""))
                 {

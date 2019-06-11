@@ -1,4 +1,4 @@
-package com.example.examproject.TransferMoneyBetweenAccounts;
+package com.example.examproject.Accounts;
 
 public class BusinessAccount extends Account {
 

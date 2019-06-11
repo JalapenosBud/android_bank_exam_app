@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
+import com.example.examproject.Customer.Customer;
 import com.example.examproject.Interfaces.OnCustomerRegister;
 import com.example.examproject.R;
 

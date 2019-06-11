@@ -12,19 +12,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 
-import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.BankAccounts.BankFactory;
+import com.example.examproject.Bank.Bank;
+import com.example.examproject.Bank.BankFactory;
 import com.example.examproject.R;
-import com.example.examproject.TransferMoneyBetweenAccounts.Account;
-import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
-import com.example.examproject.TransferMoneyBetweenAccounts.BudgetAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.BusinessAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
-import com.example.examproject.TransferMoneyBetweenAccounts.PensionAccount;
+import com.example.examproject.Accounts.AccountType;
 
 import java.util.ArrayList;
 
@@ -91,14 +85,10 @@ public class ApplyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //LIST WITH ACCOUNTS TO APPLY FOR
         BankFactory factory = new BankFactory();
-        //have a way to instantiate and add new account to current customer account list
 
         Spinner spinner_apply = (Spinner)getView().findViewById(R.id.spinner_account_apply);
         SpinnerAdapter listAdapter = new ArrayAdapter<String>(getContext(), R.layout.support_simple_spinner_dropdown_item, Bank.getApplicableAccounts());
-        //Customer tempcust = new Customer("peter", "larsen","123", "Copenhagen");
-
 
         View apply_view = (View)getView().findViewById(R.id.apply_for_acc_layout) ;
         spinner_apply.setAdapter(listAdapter);
@@ -129,8 +119,6 @@ public class ApplyFragment extends Fragment {
                 {
                     Bank.get_logged_in_customer.accounts.add(factory.getAccount(AccountType.SAVINGS));
                 }
-
-
 
                 if(!Bank.get_logged_in_customer.accounts.contains(factory.getAccount(AccountType.BUSINESS)))
                 {

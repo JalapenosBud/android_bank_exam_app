@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
+import com.example.examproject.Customer.Customer;
 
 public class CustomerModel extends ViewModel {
     public final MutableLiveData<Customer> userLiveData = new MutableLiveData<>();

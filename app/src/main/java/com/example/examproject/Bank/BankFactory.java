@@ -1,12 +1,12 @@
-package com.example.examproject.BankAccounts;
+package com.example.examproject.Bank;
 
-import com.example.examproject.TransferMoneyBetweenAccounts.Account;
-import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
-import com.example.examproject.TransferMoneyBetweenAccounts.BudgetAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.BusinessAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.DefaultAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.PensionAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.SavingsAccount;
+import com.example.examproject.Accounts.Account;
+import com.example.examproject.Accounts.AccountType;
+import com.example.examproject.Accounts.BudgetAccount;
+import com.example.examproject.Accounts.BusinessAccount;
+import com.example.examproject.Accounts.DefaultAccount;
+import com.example.examproject.Accounts.PensionAccount;
+import com.example.examproject.Accounts.SavingsAccount;
 
 public class BankFactory {
 

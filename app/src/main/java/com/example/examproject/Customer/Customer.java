@@ -1,10 +1,14 @@
-package com.example.examproject.TransferMoneyBetweenAccounts;
+package com.example.examproject.Customer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.BankAccounts.BankFactory;
+import com.example.examproject.Accounts.Account;
+import com.example.examproject.Accounts.AccountType;
+import com.example.examproject.Accounts.BudgetAccount;
+import com.example.examproject.Accounts.DefaultAccount;
+import com.example.examproject.Bank.Bank;
+import com.example.examproject.Bank.BankFactory;
 
 import java.util.ArrayList;
 import java.util.List;

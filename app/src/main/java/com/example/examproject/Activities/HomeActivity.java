@@ -16,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.examproject.Fragments.ApplyFragment;
-import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.TransferMoneyBetweenAccounts.NemIdFragment;
+import com.example.examproject.Bank.Bank;
+import com.example.examproject.Fragments.NemIdFragment;
 import com.example.examproject.Fragments.PayBillsFragment;
-import com.example.examproject.TransferMoneyBetweenAccounts.TransferFragment;
+import com.example.examproject.Fragments.TransferFragment;
 import com.example.examproject.R;
 
 public class HomeActivity extends AppCompatActivity implements TransferFragment.OnFragmentInteractionListener, NemIdFragment.OnFragmentInteractionListener, PayBillsFragment.OnFragmentInteractionListener, ApplyFragment.OnFragmentInteractionListener {

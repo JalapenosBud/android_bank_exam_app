@@ -1,7 +1,6 @@
-package com.example.examproject.TransferMoneyBetweenAccounts;
+package com.example.examproject.Accounts;
 
 public class BudgetAccount extends Account {
-    public float amount_of_days_to_insert_money;
 
     public BudgetAccount() {
         money = 50;

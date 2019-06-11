@@ -1,7 +1,6 @@
 package com.example.examproject;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 
 
 import com.example.examproject.Interfaces.OnCustomerRegister;
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
+import com.example.examproject.Customer.Customer;
 
 
 /**

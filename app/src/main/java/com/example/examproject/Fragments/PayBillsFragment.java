@@ -14,11 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.examproject.BankAccounts.Bank;
+import com.example.examproject.Bank.Bank;
 import com.example.examproject.R;
-import com.example.examproject.TransferMoneyBetweenAccounts.Account;
-
-import java.util.ArrayList;
+import com.example.examproject.Accounts.Account;
 
 /**
  * A simple {@link Fragment} subclass.

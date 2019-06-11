@@ -1,8 +1,8 @@
-package com.example.examproject.TransferMoneyBetweenAccounts;
+package com.example.examproject.Accounts;
+
+import com.example.examproject.Customer.Customer;
 
 public class PensionAccount extends Account {
-
-    public int pension_savings;
 
     public Customer customer;
 

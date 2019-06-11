@@ -11,13 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.examproject.TransferMoneyBetweenAccounts.AccountType;
-import com.example.examproject.BankAccounts.Bank;
-import com.example.examproject.BankAccounts.BankFactory;
-import com.example.examproject.TransferMoneyBetweenAccounts.BusinessAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.PensionAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.SavingsAccount;
-import com.example.examproject.TransferMoneyBetweenAccounts.Customer;
+import com.example.examproject.Accounts.PensionAccount;
+import com.example.examproject.Bank.Bank;
+import com.example.examproject.Bank.BankFactory;
+import com.example.examproject.Customer.Customer;
 import com.example.examproject.Fragments.RegisterFragment;
 import com.example.examproject.Fragments.ResetPasswordFragment;
 import com.example.examproject.Interfaces.OnCustomerRegister;
@@ -32,7 +29,6 @@ public class LoginActivity extends AppCompatActivity implements RegisterFragment
     ResetPasswordFragment resetPasswordFragment = new ResetPasswordFragment();
 
     Bank bank;
-    BankFactory factory = new BankFactory();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +38,8 @@ public class LoginActivity extends AppCompatActivity implements RegisterFragment
         bank = new Bank();
 
         Customer peter = new Customer("peter", "hansen","123","Copenhagen");
-
         Customer lars = new Customer("lars", "dudeson","123","Copenhagen");
+        lars.accounts.add(new PensionAccount());
 
         Bank.add(peter);
         Bank.add(lars);
